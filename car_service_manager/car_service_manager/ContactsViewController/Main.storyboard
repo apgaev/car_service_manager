@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d5r-fR-nMG">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Contacts View Controller-->
+        <scene sceneID="616-Y0-8mz">
+            <objects>
+                <viewController id="d5r-fR-nMG" customClass="ContactsViewController" customModule="car_service_manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9qj-18-oqG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZv-VW-YZD">
+                                <rect key="frame" x="20" y="39" width="374" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9T6-xd-wPi">
+                                        <rect key="frame" x="0.0" y="5" width="56" height="46.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="Xr9-PY-jdX"/>
+                                            <constraint firstAttribute="height" constant="56" id="oP0-4P-N0U"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="line.horizontal.3" catalog="system"/>
+                                    </button>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6rB-lX-Sa5">
+                                        <rect key="frame" x="56" y="0.0" width="318" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="d5r-fR-nMG" id="tZI-f3-cO9"/>
+                                        </connections>
+                                    </searchBar>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="NYN-en-CG5"/>
+                                </constraints>
+                            </stackView>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5H4-yr-MGk">
+                                <rect key="frame" x="20" y="813" width="374" height="83"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem systemItem="contacts" id="yYH-9v-3iD"/>
+                                    <tabBarItem systemItem="history" id="Xs7-zP-LFD"/>
+                                    <tabBarItem title="Бухгалтерия" image="briefcase.fill" catalog="system" id="wST-DM-zcs"/>
+                                </items>
+                            </tabBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zTd-so-jYt">
+                                <rect key="frame" x="20" y="95" width="374" height="718"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactsCell" textLabel="gDK-Zk-hN6" style="IBUITableViewCellStyleDefault" id="JqY-k3-S3R">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JqY-k3-S3R" id="guP-Wf-URh">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gDK-Zk-hN6">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="d5r-fR-nMG" id="iAG-EL-7VR"/>
+                                    <outlet property="delegate" destination="d5r-fR-nMG" id="R3W-LE-ODP"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5H4-yr-MGk" secondAttribute="bottom" id="60g-AU-9kq"/>
+                            <constraint firstItem="yZv-VW-YZD" firstAttribute="leading" secondItem="oB2-hH-FxW" secondAttribute="leading" constant="20" id="62m-qJ-OMY"/>
+                            <constraint firstAttribute="trailing" secondItem="5H4-yr-MGk" secondAttribute="trailing" constant="20" id="GIQ-fA-5Yf"/>
+                            <constraint firstItem="5H4-yr-MGk" firstAttribute="leading" secondItem="oB2-hH-FxW" secondAttribute="leading" constant="20" id="IXL-3U-lSD"/>
+                            <constraint firstItem="zTd-so-jYt" firstAttribute="leading" secondItem="oB2-hH-FxW" secondAttribute="leading" constant="20" id="ODA-hF-Zg1"/>
+                            <constraint firstItem="oB2-hH-FxW" firstAttribute="trailing" secondItem="yZv-VW-YZD" secondAttribute="trailing" constant="20" id="TTu-oU-U9R"/>
+                            <constraint firstItem="zTd-so-jYt" firstAttribute="top" secondItem="yZv-VW-YZD" secondAttribute="bottom" id="bg7-k2-l7T"/>
+                            <constraint firstItem="yZv-VW-YZD" firstAttribute="top" secondItem="9qj-18-oqG" secondAttribute="topMargin" constant="-5" id="jlM-M6-UP0"/>
+                            <constraint firstItem="yZv-VW-YZD" firstAttribute="leading" secondItem="oB2-hH-FxW" secondAttribute="leading" constant="20" id="ohj-cg-Syz"/>
+                            <constraint firstItem="oB2-hH-FxW" firstAttribute="trailing" secondItem="zTd-so-jYt" secondAttribute="trailing" constant="20" id="pcs-PC-IVD"/>
+                            <constraint firstItem="5H4-yr-MGk" firstAttribute="top" secondItem="zTd-so-jYt" secondAttribute="bottom" id="yEL-CD-Yq3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oB2-hH-FxW"/>
+                    </view>
+                    <connections>
+                        <outlet property="contactsSearchBar" destination="6rB-lX-Sa5" id="jfX-ei-1kY"/>
+                        <outlet property="contactsTableView" destination="zTd-so-jYt" id="SyO-bE-nkV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7N8-v2-L60" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7951.1999999999998" y="2176.847290640394"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="briefcase.fill" catalog="system" width="64" height="50"/>
+        <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
+    </resources>
+</document>
