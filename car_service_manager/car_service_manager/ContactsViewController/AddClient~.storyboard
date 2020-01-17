@@ -90,7 +90,7 @@
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="plus.circle" catalog="system"/>
                                 <connections>
-                                    <segue destination="hzd-h3-OYk" kind="presentation" identifier="toAddClientSegue" id="JO1-W0-DER"/>
+                                    <segue destination="ZVw-up-rCr" kind="presentation" id="JO1-W0-DER"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -120,11 +120,18 @@
             </objects>
             <point key="canvasLocation" x="-7953.75" y="2176.0563380281692"/>
         </scene>
-        <!--AddClient-->
-        <scene sceneID="9bg-gE-sHE">
+        <!--View Controller-->
+        <scene sceneID="niH-9L-ls1">
             <objects>
-                <viewControllerPlaceholder storyboardName="AddClient" id="hzd-h3-OYk" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mkm-FY-pFs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="ZVw-up-rCr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sBO-y6-xpJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.40322666952054792" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="4ax-v4-2p6"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UVf-Pg-5UX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-7059" y="2176"/>
         </scene>

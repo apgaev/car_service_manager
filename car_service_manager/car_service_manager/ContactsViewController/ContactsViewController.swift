@@ -12,6 +12,7 @@ class ContactsViewController: UIViewController {
 
     @IBOutlet weak var contactsSearchBar: UISearchBar!
     @IBOutlet weak var contactsTableView: UITableView!
+    @IBOutlet weak var addButton: UIButton!
     
     //var clientModel: ClientModel?
     
@@ -26,6 +27,15 @@ class ContactsViewController: UIViewController {
         ClientsFunctions.readClient(completion: { [weak self] in
             self?.contactsTableView.reloadData()
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAddClientSegue" {
+            let popup = segue.destination as! AddClientViewController
+            popup.doneSaving = { [weak self] in
+                self?.contactsTableView.reloadData()
+            }
+        }
     }
 }
 

@@ -11,7 +11,7 @@ import Foundation
 class ClientsFunctions {
     
     static func createClient(clientModel: ClientModel) {
-        
+        Data.clientModels.append(clientModel)
     }
     
     static func readClient(completion: @escaping () -> ()) {
