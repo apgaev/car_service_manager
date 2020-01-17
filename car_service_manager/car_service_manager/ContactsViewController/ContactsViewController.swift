@@ -13,41 +13,51 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsSearchBar: UISearchBar!
     @IBOutlet weak var contactsTableView: UITableView!
     
-    let contacts = ["Антон Гаев", "Антон Иванов", "Игорь Назаренко"]
+    //var clientModel: ClientModel?
     
-    var searchContact = [String]()
-    var searching = false
+    //let contacts = ["Антон Гаев", "Антон Иванов", "Игорь Назаренко"]
+    
+    //var searchContact = [String]()
+    //var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ClientsFunctions.readClient(completion: { [weak self] in
+            self?.contactsTableView.reloadData()
+        })
     }
 }
 
-extension ContactsViewController: UITableViewDataSource, UITableViewDelegate {
+extension ContactsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searching {
-            return searchContact.count
-        } else {
-            return contacts.count
-        }
+        //if searching {
+            //return searchContact.count
+        //} else {
+            //return contacts.count
+            return Data.clientModels.count
+        //}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell")
-        if searching {
-            cell?.textLabel?.text = searchContact[indexPath.row]
-        } else {
-            cell?.textLabel?.text = contacts[indexPath.row]
-        }
-        return cell!
+        //let model = clientModel!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell") as! ClientTableViewCell
+//        if searching {
+//            cell?.textLabel?.text = searchContact[indexPath.row]
+//        } else {
+//            //cell?.textLabel?.text = contacts[indexPath.row]
+//            cell?.textLabel?.text = Data.clientModels[indexPath.row].clientName
+//        }
+        cell.setup(model: Data.clientModels[indexPath.row])
+        return cell
     }
 }
 
-extension ContactsViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchContact = contacts.filter({$0.prefix(searchText.count) == searchText})
-        searching = true
-        contactsTableView.reloadData()
-    }
-}
+//extension ContactsViewController: UISearchBarDelegate {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        //searchContact = contacts.filter({$0.prefix(searchText.count) == searchText})
+//        searching = true
+//        contactsTableView.reloadData()
+//    }
+//}

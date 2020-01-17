@@ -52,22 +52,30 @@
                                 <rect key="frame" x="20" y="95" width="374" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactsCell" textLabel="gDK-Zk-hN6" style="IBUITableViewCellStyleDefault" id="JqY-k3-S3R">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactsCell" id="JqY-k3-S3R" customClass="ClientTableViewCell" customModule="car_service_manager" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JqY-k3-S3R" id="guP-Wf-URh">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gDK-Zk-hN6">
-                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVd-g4-UgZ">
+                                                    <rect key="frame" x="20" y="11" width="334" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="qVd-g4-UgZ" secondAttribute="bottom" id="5hU-hS-Coa"/>
+                                                <constraint firstItem="qVd-g4-UgZ" firstAttribute="top" secondItem="guP-Wf-URh" secondAttribute="topMargin" id="XJa-0P-UG3"/>
+                                                <constraint firstItem="qVd-g4-UgZ" firstAttribute="leading" secondItem="guP-Wf-URh" secondAttribute="leadingMargin" id="dOP-Oi-sgq"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qVd-g4-UgZ" secondAttribute="trailing" id="kMW-CY-svv"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="carNameLabel" destination="qVd-g4-UgZ" id="OP0-BJ-G7n"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -99,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7N8-v2-L60" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7951.1999999999998" y="2176.847290640394"/>
+            <point key="canvasLocation" x="-7952.1739130434789" y="2176.3392857142858"/>
         </scene>
     </scenes>
     <resources>
