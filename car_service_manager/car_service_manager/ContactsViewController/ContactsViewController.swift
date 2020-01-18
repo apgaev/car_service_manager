@@ -14,6 +14,8 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     
+    var clientIndexToEdit: Int?
+    
     //var clientModel: ClientModel?
     
     //let contacts = ["Антон Гаев", "Антон Иванов", "Игорь Назаренко"]
@@ -32,6 +34,7 @@ class ContactsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAddClientSegue" {
             let popup = segue.destination as! AddClientViewController
+            popup.clientIndexToEdit = self.clientIndexToEdit
             popup.doneSaving = { [weak self] in
                 self?.contactsTableView.reloadData()
             }
@@ -89,6 +92,15 @@ extension ContactsViewController: UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> ()) in
+            self.clientIndexToEdit = indexPath.row
+            self.performSegue(withIdentifier: "toAddClientSegue", sender: nil)
+            actionPerformed(true)
+        }
+        edit.image = UIImage.init(systemName: "pencil")
+        return UISwipeActionsConfiguration(actions: [edit])
+    }
 }
 
 //extension ContactsViewController: UISearchBarDelegate {

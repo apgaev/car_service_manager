@@ -6,7 +6,7 @@
 //  Copyright © 2020 Anton Gaev. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class ClientsFunctions {
     
@@ -27,10 +27,11 @@ class ClientsFunctions {
         }
     }
     
-    static func updateClient(clientModel: ClientModel) {
-        
+    static func updateClient(at index: Int, clientName: String, image: UIImage? = nil) {
+        Data.clientModels[index].clientName = clientName
+        Data.clientModels[index].carImage = image
     }
-    
+     
     static func deleteClient(index: Int) {
         Data.clientModels.remove(at: index)
     }

@@ -16,11 +16,18 @@ class AddClientViewController: UIViewController {
     @IBOutlet weak var carImageView: UIImageView!
     
     var doneSaving : (() -> ())?
+    var clientIndexToEdit: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addClientPopupView.addShadowAndRoundedCorners()
+        
+        if let index = clientIndexToEdit {
+            let client = Data.clientModels[index]
+            clientTextField.text = client.clientName
+            carImageView.image = client.carImage
+        }
     }
     
     fileprivate func presentPhotoPickerController() {
@@ -33,7 +40,6 @@ class AddClientViewController: UIViewController {
     }
     
     @IBAction func addPhoto(_ sender: Any) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             PHPhotoLibrary.requestAuthorization { (status) in
                 switch status {
                 case .authorized:
@@ -63,7 +69,6 @@ class AddClientViewController: UIViewController {
                     fatalError()
                 }
             }
-        }
     }
     
     @IBAction func save(_ sender: Any) {
@@ -87,7 +92,11 @@ class AddClientViewController: UIViewController {
             return
         }
         
-        ClientsFunctions.createClient(clientModel: ClientModel(clientName: newClientName, carImage: carImageView.image))
+        if let index = clientIndexToEdit {
+            ClientsFunctions.updateClient(at: index, clientName: newClientName, image: carImageView.image)
+        } else {
+            ClientsFunctions.createClient(clientModel: ClientModel(clientName: newClientName, carImage: carImageView.image))
+        }
         
         if let doneSaving = doneSaving {
             doneSaving()
@@ -102,7 +111,7 @@ class AddClientViewController: UIViewController {
 
 extension AddClientViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[.originalImage] as? UIImage {
             self.carImageView.image = image
         }
         dismiss(animated: true)
