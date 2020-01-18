@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Photos
 
 class AddClientViewController: UIViewController {
 
     @IBOutlet weak var addClientPopupView: UIView!
     @IBOutlet weak var clientTextField: UITextField!
+    @IBOutlet weak var carImageView: UIImageView!
     
     var doneSaving : (() -> ())?
     
@@ -19,6 +21,49 @@ class AddClientViewController: UIViewController {
         super.viewDidLoad()
         
         addClientPopupView.addShadowAndRoundedCorners()
+    }
+    
+    fileprivate func presentPhotoPickerController() {
+        DispatchQueue.main.async {
+        let myPickerController = UIImagePickerController()
+        myPickerController.delegate = self
+        myPickerController.sourceType = .photoLibrary
+        self.present(myPickerController, animated: true)
+        }
+    }
+    
+    @IBAction func addPhoto(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            PHPhotoLibrary.requestAuthorization { (status) in
+                switch status {
+                case .authorized:
+                    self.presentPhotoPickerController()
+                case .notDetermined:
+                    self.presentPhotoPickerController()
+                case .restricted:
+                    let alert = UIAlertController(title: "Нет доступа к фото альбому", message: "Вы не сможете добавлять фото в программу", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true)
+                case .denied:
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Доступ к фото альбому был отклонён", message: "Вы не сможете добавлять фото в программу, пожалуйста, измените настройки", preferredStyle: .alert)
+                        let goToSettingsAction = UIAlertAction(title: "Перейти в настройки", style: .default) { (action) in
+                            //DispatchQueue.main.async {
+                                let url = URL(string: UIApplication.openSettingsURLString)!
+                                UIApplication.shared.open(url, options: [:])
+                            //}
+                        }
+                        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+                        alert.addAction(goToSettingsAction)
+                        alert.addAction(cancelButton)
+                        self.present(alert, animated: true)
+                    }
+                @unknown default:
+                    fatalError()
+                }
+            }
+        }
     }
     
     @IBAction func save(_ sender: Any) {
@@ -31,18 +76,18 @@ class AddClientViewController: UIViewController {
 //            imageView.contentMode = .scaleAspectFit
 //            clientTextField.rightView = imageView
             
-            clientTextField.layer.borderColor = UIColor.red.cgColor
-            clientTextField.layer.borderWidth = 1
-            clientTextField.layer.cornerRadius = 5
-            
             clientTextField.placeholder = "Необходимо заполнить поле"
+            
+            clientTextField.layer.borderColor = UIColor.red.cgColor
+            clientTextField.layer.cornerRadius = 5
+            clientTextField.layer.borderWidth = 1
             
             clientTextField.rightViewMode = .always
             
             return
         }
         
-        ClientsFunctions.createClient(clientModel: ClientModel(clientName: newClientName))
+        ClientsFunctions.createClient(clientModel: ClientModel(clientName: newClientName, carImage: carImageView.image))
         
         if let doneSaving = doneSaving {
             doneSaving()
@@ -51,6 +96,15 @@ class AddClientViewController: UIViewController {
     }
     
     @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true)
+    }
+}
+
+extension AddClientViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.carImageView.image = image
+        }
         dismiss(animated: true)
     }
 }

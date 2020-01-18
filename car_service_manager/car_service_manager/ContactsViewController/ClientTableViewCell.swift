@@ -11,13 +11,17 @@ import UIKit
 class ClientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var carNameLabel: UILabel!
+    @IBOutlet weak var clientImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        
     }
 
     func setup(model: ClientModel) {
         carNameLabel.text = model.clientName
+        clientImageView.image = model.carImage
     }
     
 }

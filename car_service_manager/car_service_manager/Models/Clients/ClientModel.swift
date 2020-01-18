@@ -11,14 +11,14 @@ import UIKit
 struct ClientModel {
     let id: UUID
     var clientName: String
-    
+    var carImage: UIImage?
     //var car: CarModel
     
     //init(car: CarModel, clientName: String? = nil) {
-    init(clientName: String) {
+    init(clientName: String, carImage: UIImage? = nil) {
         id = UUID()
         //self.car = car
-
+        self.carImage = carImage
         self.clientName = clientName
     }
 }
