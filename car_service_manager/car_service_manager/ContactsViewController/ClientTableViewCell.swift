@@ -16,7 +16,7 @@ class ClientTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        clientImageView.layer.cornerRadius = clientImageView.frame.height/2
     }
 
     func setup(model: ClientModel) {

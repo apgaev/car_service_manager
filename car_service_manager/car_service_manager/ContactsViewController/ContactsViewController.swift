@@ -64,6 +64,33 @@ extension ContactsViewController: UITableViewDataSource {
     }
 }
 
+extension ContactsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let client = Data.clientModels[indexPath.row]
+        
+        let delete = UIContextualAction(style: .destructive, title: "Удалить") { (contextualAction, view, actionPerformed: @escaping (Bool) -> ()) in
+            
+            let alert = UIAlertController(title: "Удалить клиента", message: "Вы точно хотите удалить клиента \(client.clientName)?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: { (alertAction) in
+                actionPerformed(false)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (alertAction) in
+                ClientsFunctions.deleteClient(index: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }))
+            
+            self.present(alert, animated: true)
+        }
+        delete.image = UIImage.init(systemName: "delete.left.fill")
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+}
+
 //extension ContactsViewController: UISearchBarDelegate {
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        //searchContact = contacts.filter({$0.prefix(searchText.count) == searchText})

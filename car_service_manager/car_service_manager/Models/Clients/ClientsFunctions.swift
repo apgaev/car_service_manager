@@ -31,7 +31,7 @@ class ClientsFunctions {
         
     }
     
-    static func deleteClient(clientModel: ClientModel) {
-        
+    static func deleteClient(index: Int) {
+        Data.clientModels.remove(at: index)
     }
 }
