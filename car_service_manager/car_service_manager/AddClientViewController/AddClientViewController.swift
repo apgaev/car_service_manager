@@ -33,6 +33,7 @@ class AddClientViewController: UIViewController {
     fileprivate func presentPhotoPickerController() {
         DispatchQueue.main.async {
         let myPickerController = UIImagePickerController()
+        myPickerController.allowsEditing = true
         myPickerController.delegate = self
         myPickerController.sourceType = .photoLibrary
         self.present(myPickerController, animated: true)
@@ -111,7 +112,9 @@ class AddClientViewController: UIViewController {
 
 extension AddClientViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.originalImage] as? UIImage {
+        if let image = info[.editedImage] as? UIImage {
+            self.carImageView.image = image
+        } else if let image = info[.originalImage] as? UIImage {
             self.carImageView.image = image
         }
         dismiss(animated: true)

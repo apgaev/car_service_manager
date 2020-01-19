@@ -12,12 +12,15 @@ struct ClientModel {
     let id: UUID
     var clientName: String
     var carImage: UIImage?
-    //var car: CarModel
+    var car = [CarModel]()
     
     //init(car: CarModel, clientName: String? = nil) {
-    init(clientName: String, carImage: UIImage? = nil) {
+    init(clientName: String, carImage: UIImage? = nil, car: [CarModel]? = nil) {
         id = UUID()
-        //self.car = car
+        
+        if let car = car {
+            self.car = car
+        }
         self.carImage = carImage
         self.clientName = clientName
     }

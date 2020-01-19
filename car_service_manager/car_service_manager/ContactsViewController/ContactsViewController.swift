@@ -31,6 +31,9 @@ class ContactsViewController: UIViewController {
         })
     }
     
+//    @IBAction func unwindToContactsViewController(_ unwindSegue: UIStoryboardSegue) {
+//    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toAddClientSegue" {
             let popup = segue.destination as! AddClientViewController
@@ -38,6 +41,7 @@ class ContactsViewController: UIViewController {
             popup.doneSaving = { [weak self] in
                 self?.contactsTableView.reloadData()
             }
+            clientIndexToEdit = nil
         }
     }
 }
@@ -100,6 +104,15 @@ extension ContactsViewController: UITableViewDelegate {
         }
         edit.image = UIImage.init(systemName: "pencil")
         return UISwipeActionsConfiguration(actions: [edit])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let client = Data.clientModels[indexPath.row]
+        
+        let storyboard = UIStoryboard(name: "Car", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController() as! CarViewController
+        vc.clientId = client.id
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

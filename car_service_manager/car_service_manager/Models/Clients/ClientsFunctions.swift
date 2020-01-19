@@ -27,6 +27,15 @@ class ClientsFunctions {
         }
     }
     
+    static func readContact(by id: UUID, completion: @escaping (ClientModel?) -> ()) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let client = Data.clientModels.first(where: { $0.id == id })
+            DispatchQueue.main.async {
+                completion(client)
+            }
+        }
+    }
+    
     static func updateClient(at index: Int, clientName: String, image: UIImage? = nil) {
         Data.clientModels[index].clientName = clientName
         Data.clientModels[index].carImage = image
