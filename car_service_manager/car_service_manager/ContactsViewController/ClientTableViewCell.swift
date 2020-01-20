@@ -19,9 +19,9 @@ class ClientTableViewCell: UITableViewCell {
         clientImageView.layer.cornerRadius = clientImageView.frame.height/2
     }
 
-    func setup(model: ClientModel) {
-        carNameLabel.text = model.clientName
-        clientImageView.image = model.carImage
-    }
+//    func setup(model: ClientModel) {
+//        carNameLabel.text = model.clientName
+//        clientImageView.image = model.carImage
+//    }
     
 }

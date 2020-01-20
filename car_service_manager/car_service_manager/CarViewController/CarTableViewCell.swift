@@ -15,7 +15,7 @@ class CarTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setup(model: CarModel) {
-        titleLabel.text = model.carName
-    }
+//    func setup(model: CarModel) {
+//        titleLabel.text = model.carName
+//    }
 }

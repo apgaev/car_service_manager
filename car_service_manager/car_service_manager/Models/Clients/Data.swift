@@ -6,8 +6,8 @@
 //  Copyright © 2020 Anton Gaev. All rights reserved.
 //
 
-import Foundation
-
-class Data {
-    static var clientModels = [ClientModel]()
-}
+//import Foundation
+//
+//class Data {
+//    static var clientModels = [ClientModel]()
+//}
