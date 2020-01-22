@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Car" representedClassName="Car" syncable="YES">
+        <attribute name="carImage" optional="YES" attributeType="Binary"/>
         <attribute name="carName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="owner" optional="YES" attributeType="String"/>
@@ -14,7 +15,7 @@
         <relationship name="repairedCar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Car" inverseName="carRepairs" inverseEntity="Car"/>
     </entity>
     <elements>
-        <element name="Car" positionX="-1298.65234375" positionY="29.25390625" width="128" height="118"/>
+        <element name="Car" positionX="-1298.65234375" positionY="29.25390625" width="128" height="133"/>
         <element name="Repairs" positionX="-1130.3515625" positionY="33.51953125" width="128" height="103"/>
     </elements>
 </model>

@@ -35,4 +35,9 @@ class GradientView: UIView {
         layer.locations = [ 0.5 ]
     }
     
+    @IBInspectable public var cornerRadius: CGFloat = 0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+        }
+    }
 }

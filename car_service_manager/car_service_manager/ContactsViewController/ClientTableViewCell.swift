@@ -12,6 +12,7 @@ class ClientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var carNameLabel: UILabel!
     @IBOutlet weak var clientImageView: UIImageView!
+    @IBOutlet weak var clientNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

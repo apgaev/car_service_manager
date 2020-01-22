@@ -13,10 +13,12 @@
 		03681F0E23D4E1780018021F /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0D23D4E1770018021F /* CarTableViewCell.swift */; };
 		03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */; };
 		03681F3E23D605970018021F /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3D23D605970018021F /* PersistanceService.swift */; };
-		03681F4323D607390018021F /* Car+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3F23D607390018021F /* Car+CoreDataClass.swift */; };
-		03681F4423D607390018021F /* Car+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F4023D607390018021F /* Car+CoreDataProperties.swift */; };
-		03681F4523D607390018021F /* Repairs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F4123D607390018021F /* Repairs+CoreDataClass.swift */; };
 		03681F4623D607390018021F /* Repairs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */; };
+		036A604C23D8C9A00052A2D6 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604B23D8C9A00052A2D6 /* DatabaseHelper.swift */; };
+		036A605123D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */; };
+		036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */; };
+		036A605423D8CEBE0052A2D6 /* Car+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */; };
+		036A605623D8DF590052A2D6 /* AlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A605523D8DF590052A2D6 /* AlertControllerExtension.swift */; };
 		037C31D123D0915C002B7E75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C31D023D0915C002B7E75 /* AppDelegate.swift */; };
 		037C31D323D0915C002B7E75 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C31D223D0915C002B7E75 /* SceneDelegate.swift */; };
 		037C31DA23D09161002B7E75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037C31D923D09161002B7E75 /* Assets.xcassets */; };
@@ -42,10 +44,12 @@
 		03681F0D23D4E1770018021F /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		03681F3323D4FD0F0018021F /* car_service_manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = car_service_manager.xcdatamodel; sourceTree = "<group>"; };
 		03681F3D23D605970018021F /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
-		03681F3F23D607390018021F /* Car+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		03681F4023D607390018021F /* Car+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		03681F4123D607390018021F /* Repairs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repairs+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repairs+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		036A604B23D8C9A00052A2D6 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
+		036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repairs+CoreDataClass.swift"; sourceTree = "<group>"; };
+		036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataClass.swift"; sourceTree = "<group>"; };
+		036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		036A605523D8DF590052A2D6 /* AlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerExtension.swift; sourceTree = "<group>"; };
 		037C31CD23D0915C002B7E75 /* car_service_manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = car_service_manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		037C31D023D0915C002B7E75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		037C31D223D0915C002B7E75 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 		03681F0A23D253010018021F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				036A605523D8DF590052A2D6 /* AlertControllerExtension.swift */,
 				037C31E423D0A84C002B7E75 /* GradientView.swift */,
 				03681F0B23D253530018021F /* UIViewExtensions.swift */,
 			);
@@ -124,6 +129,7 @@
 				03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */,
 				037C31D023D0915C002B7E75 /* AppDelegate.swift */,
 				03681F3D23D605970018021F /* PersistanceService.swift */,
+				036A604B23D8C9A00052A2D6 /* DatabaseHelper.swift */,
 				037C31D223D0915C002B7E75 /* SceneDelegate.swift */,
 				037C31DB23D09161002B7E75 /* LaunchScreen.storyboard */,
 				037C31DE23D09161002B7E75 /* Info.plist */,
@@ -144,10 +150,10 @@
 		037C31F023D11187002B7E75 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				03681F3F23D607390018021F /* Car+CoreDataClass.swift */,
-				03681F4023D607390018021F /* Car+CoreDataProperties.swift */,
-				03681F4123D607390018021F /* Repairs+CoreDataClass.swift */,
 				03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */,
+				036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */,
+				036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */,
+				036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */,
 				037C31F623D11E86002B7E75 /* Data.swift */,
 				037C31FC23D1D137002B7E75 /* Car */,
 				037C31F123D111E7002B7E75 /* Clients */,
@@ -266,24 +272,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				03681F4623D607390018021F /* Repairs+CoreDataProperties.swift in Sources */,
+				036A605423D8CEBE0052A2D6 /* Car+CoreDataProperties.swift in Sources */,
 				037C31F523D11466002B7E75 /* ClientsFunctions.swift in Sources */,
+				036A605123D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift in Sources */,
 				037C31D123D0915C002B7E75 /* AppDelegate.swift in Sources */,
 				037C320623D2029C002B7E75 /* ProcessDetailsViewController.swift in Sources */,
 				03681F0C23D253530018021F /* UIViewExtensions.swift in Sources */,
 				037C31F323D11458002B7E75 /* ClientModel.swift in Sources */,
 				03681F3E23D605970018021F /* PersistanceService.swift in Sources */,
 				037C31EF23D0E198002B7E75 /* ContactsViewController.swift in Sources */,
+				036A605623D8DF590052A2D6 /* AlertControllerExtension.swift in Sources */,
 				037C31E523D0A84C002B7E75 /* GradientView.swift in Sources */,
 				037C320123D1D496002B7E75 /* CarViewController.swift in Sources */,
-				03681F4523D607390018021F /* Repairs+CoreDataClass.swift in Sources */,
+				036A604C23D8C9A00052A2D6 /* DatabaseHelper.swift in Sources */,
 				03681F0E23D4E1780018021F /* CarTableViewCell.swift in Sources */,
 				03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */,
-				03681F4323D607390018021F /* Car+CoreDataClass.swift in Sources */,
 				037C31FB23D1D128002B7E75 /* CarModel.swift in Sources */,
 				037C31F723D11E86002B7E75 /* Data.swift in Sources */,
 				037C31F923D138DA002B7E75 /* ClientTableViewCell.swift in Sources */,
+				036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */,
 				037C31D323D0915C002B7E75 /* SceneDelegate.swift in Sources */,
-				03681F4423D607390018021F /* Car+CoreDataProperties.swift in Sources */,
 				03681F0923D250970018021F /* AddClientViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
