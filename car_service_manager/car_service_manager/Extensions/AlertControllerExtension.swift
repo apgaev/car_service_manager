@@ -16,15 +16,15 @@ extension UIAlertController {
         self.addAction(imgAction)
     }
     
-    struct Holder {
-            static var _alertImage = UIImageView()
-    }
-    var alertImage:UIImageView {
-            get {
-                return Holder._alertImage
-            }
-            set(newValue) {
-                Holder._alertImage = newValue
-            }
-    }
+//    struct Holder {
+//            static var _alertImage = UIImageView()
+//    }
+//    var alertImage:UIImageView {
+//            get {
+//                return Holder._alertImage
+//            }
+//            set(newValue) {
+//                Holder._alertImage = newValue
+//            }
+//    }
 }

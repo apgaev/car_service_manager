@@ -12,39 +12,93 @@ class CarViewController: UIViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var carNumberTextField: UITextField!
+    @IBOutlet weak var saveImage: UIImageView!
+    @IBOutlet weak var clientNameTextInput: UITextField!
+    @IBOutlet weak var carTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
     
-    //var clientId: UUID!
-    //var clientModel: ClientModel?
+    let imagePicker = UIImagePickerController()
+    var repairs: [String] = ["Бампер", "Крыло"]
+    
+    var onSave: ((_ data: Car) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
-        
-//        ClientsFunctions.readContact(by: clientId) { [weak self] (model) in
-//            guard let self = self else { return }
-//            self.clientModel = model
-//
-//            guard let model = model else { return }
-//            self.title = model.clientName
-//            self.backgroundImageView.image = model.carImage
-//
-//            self.tableView.reloadData()
-//        }
+        makeTappableImage()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "toCarViewController" {
+                let popup = segue.destination as! ProcessDetailsViewController
+                popup.onSave = { (data) in
+                    self.repairs.append(data)
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    
+    @IBAction func returnWithSomeDataToContactsViewController(_ sender: Any) {
+                let name = clientNameTextInput.text!
+                let carName = carTextField.text!
+                let car = Car(context: PersistanceService.context)
+                let png = self.saveImage.image?.pngData()
+                car.carName = carName
+                car.owner = name
+                car.carImage = png
+                car.phone = phoneTextField.text!
+                
+                //self.contacts.append(car)
+                //self.contactsTableView.reloadData()
+                PersistanceService.saveContext()
+                onSave?(car)
+                dismiss(animated: true)
+    }
+    
 }
 
 extension CarViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-        //return Data.clientModels.count
+        return repairs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //var model = Data.clientModels[indexPath.row].clientName
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CarTableViewCell
-        //cell.setup(model: CarModel)
+        cell.titleLabel.text = repairs[indexPath.row]
         return cell
+    }
+}
+
+// MARK: - Tappable Image Functions
+extension CarViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+
+    func makeTappableImage () {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.selectImage(gesture:)))
+        tapGesture.numberOfTouchesRequired = 1
+        self.saveImage.isUserInteractionEnabled = true
+        self.saveImage.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func selectImage(gesture: UITapGestureRecognizer) {
+        self.openImagePicker()
+    }
+
+    func openImagePicker() {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.allowsEditing = false
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+        if let img = info[.originalImage] as? UIImage {
+            self.saveImage.image = img
+        }
     }
 }

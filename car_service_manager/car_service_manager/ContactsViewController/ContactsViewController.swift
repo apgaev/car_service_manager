@@ -15,14 +15,10 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var searchOptions: UIButton!
-    @IBOutlet weak var saveImage: UIImageView!
-    @IBOutlet weak var menuView: GradientView!
-    @IBOutlet weak var clientNameTextInput: UITextField!
-    @IBOutlet weak var carTextField: UITextField!
     
-    let imagePicker = UIImagePickerController()
+    //let imagePicker = UIImagePickerController()
     
-    var clientIndexToEdit: Int?
+    //var clientIndexToEdit: Int?
     var contacts = [Car]()
     
    // var searchContact = [String]()
@@ -31,48 +27,66 @@ class ContactsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureLayout()
+        //configureLayout()
         coreDataInitialSetup()
-        makeTappableImage()
     }
     
-    @IBAction func addToCoreData(_ sender: Any) {
-        let name = clientNameTextInput.text!
-        let carName = carTextField.text!
-        let car = Car(context: PersistanceService.context)
-        let png = self.saveImage.image?.pngData()
-        car.carName = carName
-        car.owner = name
-        car.carImage = png
-        
-        PersistanceService.saveContext()
-        self.contacts.append(car)
-        self.contactsTableView.reloadData()
-        toggleAddingMenu()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCarViewController" {
+            let popup = segue.destination as! CarViewController
+            popup.onSave = { (data) in
+                let name = data.owner
+                let carName = data.carName
+                let car = Car(context: PersistanceService.context)
+                let png = data.carImage
+                car.carName = carName
+                car.owner = name
+                car.carImage = png
+                car.phone = data.phone
+                
+                self.contacts.append(car)
+                self.contactsTableView.reloadData()
+            }
+        }
     }
     
-    @IBAction func addNewClient() {
-        toggleAddingMenu()
-    }
+//    @IBAction func addToCoreData(_ sender: Any) {
+//        let name = clientNameTextInput.text!
+//        let carName = carTextField.text!
+//        let car = Car(context: PersistanceService.context)
+//        let png = self.saveImage.image?.pngData()
+//        car.carName = carName
+//        car.owner = name
+//        car.carImage = png
+//
+//        self.contacts.append(car)
+//        self.contactsTableView.reloadData()
+//        toggleAddingMenu()
+//        PersistanceService.saveContext()
+//    }
+    
+//    @IBAction func addNewClient() {
+//        toggleAddingMenu()
+//    }
 }
 
 // MARK: - Layout Extension
-extension ContactsViewController {
-    func configureLayout() {
-        menuView.center = addButton.center
-        menuView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-    }
-    
-    func toggleAddingMenu () {
-        UIView.animate(withDuration: 0.3) {
-        if self.menuView.transform == .identity {
-            self.menuView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        } else {
-            self.menuView.transform = .identity
-        }
-        }
-    }
-}
+//extension ContactsViewController {
+//    func configureLayout() {
+//        menuView.center = addButton.center
+//        menuView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+//    }
+//
+//    func toggleAddingMenu () {
+//        UIView.animate(withDuration: 0.3) {
+//        if self.menuView.transform == .identity {
+//            self.menuView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+//        } else {
+//            self.menuView.transform = .identity
+//        }
+//        }
+//    }
+//}
 
 // MARK: - Core Data layout functions
 extension ContactsViewController {
@@ -83,37 +97,6 @@ extension ContactsViewController {
             self.contacts = contacts
             self.contactsTableView.reloadData()
         } catch {}
-    }
-}
-
-// MARK: - Tappable Image Functions
-extension ContactsViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    func makeTappableImage () {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.selectImage(gesture:)))
-        tapGesture.numberOfTouchesRequired = 1
-        self.saveImage.isUserInteractionEnabled = true
-        self.saveImage.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func selectImage(gesture: UITapGestureRecognizer) {
-        self.openImagePicker()
-    }
-    
-    func openImagePicker() {
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            imagePicker.delegate = self
-            imagePicker.sourceType = .savedPhotosAlbum
-            imagePicker.allowsEditing = false
-            present(imagePicker, animated: true, completion: nil)
-        }
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        dismiss(animated: true, completion: nil)
-        if let img = info[.originalImage] as? UIImage {
-            self.saveImage.image = img
-        }
     }
 }
 

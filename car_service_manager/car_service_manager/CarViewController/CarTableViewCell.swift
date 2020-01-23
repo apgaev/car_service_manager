@@ -14,8 +14,4 @@ class CarTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-//    func setup(model: CarModel) {
-//        titleLabel.text = model.carName
-//    }
 }

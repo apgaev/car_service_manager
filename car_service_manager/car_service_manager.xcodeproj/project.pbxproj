@@ -7,14 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03681F0523D250000018021F /* AddClient.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03681F0423D250000018021F /* AddClient.storyboard */; };
-		03681F0923D250970018021F /* AddClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0823D250970018021F /* AddClientViewController.swift */; };
 		03681F0C23D253530018021F /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0B23D253530018021F /* UIViewExtensions.swift */; };
 		03681F0E23D4E1780018021F /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0D23D4E1770018021F /* CarTableViewCell.swift */; };
 		03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */; };
 		03681F3E23D605970018021F /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3D23D605970018021F /* PersistanceService.swift */; };
 		03681F4623D607390018021F /* Repairs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */; };
-		036A604C23D8C9A00052A2D6 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604B23D8C9A00052A2D6 /* DatabaseHelper.swift */; };
 		036A605123D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */; };
 		036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */; };
 		036A605423D8CEBE0052A2D6 /* Car+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */; };
@@ -26,11 +23,7 @@
 		037C31E523D0A84C002B7E75 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C31E423D0A84C002B7E75 /* GradientView.swift */; };
 		037C31ED23D0DDAE002B7E75 /* Clients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 037C31EC23D0DDAE002B7E75 /* Clients.storyboard */; };
 		037C31EF23D0E198002B7E75 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C31EE23D0E198002B7E75 /* ContactsViewController.swift */; };
-		037C31F323D11458002B7E75 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C31F223D11458002B7E75 /* ClientModel.swift */; };
-		037C31F523D11466002B7E75 /* ClientsFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C31F423D11466002B7E75 /* ClientsFunctions.swift */; };
-		037C31F723D11E86002B7E75 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C31F623D11E86002B7E75 /* Data.swift */; };
 		037C31F923D138DA002B7E75 /* ClientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C31F823D138DA002B7E75 /* ClientTableViewCell.swift */; };
-		037C31FB23D1D128002B7E75 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C31FA23D1D127002B7E75 /* CarModel.swift */; };
 		037C31FE23D1D43B002B7E75 /* Car.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 037C31FD23D1D43A002B7E75 /* Car.storyboard */; };
 		037C320123D1D496002B7E75 /* CarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C320023D1D496002B7E75 /* CarViewController.swift */; };
 		037C320323D2021E002B7E75 /* ProcessDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 037C320223D2021E002B7E75 /* ProcessDetails.storyboard */; };
@@ -38,14 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		03681F0423D250000018021F /* AddClient.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddClient.storyboard; sourceTree = "<group>"; };
-		03681F0823D250970018021F /* AddClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClientViewController.swift; sourceTree = "<group>"; };
 		03681F0B23D253530018021F /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		03681F0D23D4E1770018021F /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		03681F3323D4FD0F0018021F /* car_service_manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = car_service_manager.xcdatamodel; sourceTree = "<group>"; };
 		03681F3D23D605970018021F /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
 		03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repairs+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		036A604B23D8C9A00052A2D6 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repairs+CoreDataClass.swift"; sourceTree = "<group>"; };
 		036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataClass.swift"; sourceTree = "<group>"; };
 		036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -59,11 +49,7 @@
 		037C31E423D0A84C002B7E75 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		037C31EC23D0DDAE002B7E75 /* Clients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Clients.storyboard; sourceTree = "<group>"; };
 		037C31EE23D0E198002B7E75 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
-		037C31F223D11458002B7E75 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
-		037C31F423D11466002B7E75 /* ClientsFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsFunctions.swift; sourceTree = "<group>"; };
-		037C31F623D11E86002B7E75 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Data.swift; path = Clients/Data.swift; sourceTree = "<group>"; };
 		037C31F823D138DA002B7E75 /* ClientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTableViewCell.swift; sourceTree = "<group>"; };
-		037C31FA23D1D127002B7E75 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
 		037C31FD23D1D43A002B7E75 /* Car.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Car.storyboard; sourceTree = "<group>"; };
 		037C320023D1D496002B7E75 /* CarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarViewController.swift; sourceTree = "<group>"; };
 		037C320223D2021E002B7E75 /* ProcessDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProcessDetails.storyboard; sourceTree = "<group>"; };
@@ -81,15 +67,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03681F0723D2506B0018021F /* AddClientViewController */ = {
-			isa = PBXGroup;
-			children = (
-				03681F0423D250000018021F /* AddClient.storyboard */,
-				03681F0823D250970018021F /* AddClientViewController.swift */,
-			);
-			path = AddClientViewController;
-			sourceTree = "<group>";
-		};
 		03681F0A23D253010018021F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,7 +98,6 @@
 			children = (
 				03681F0A23D253010018021F /* Extensions */,
 				037C31F023D11187002B7E75 /* Models */,
-				03681F0723D2506B0018021F /* AddClientViewController */,
 				037C31FF23D1D452002B7E75 /* CarViewController */,
 				037C31EA23D0DAA2002B7E75 /* ContactsViewController */,
 				037C320423D20229002B7E75 /* ProcessDetailsViewController */,
@@ -129,7 +105,6 @@
 				03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */,
 				037C31D023D0915C002B7E75 /* AppDelegate.swift */,
 				03681F3D23D605970018021F /* PersistanceService.swift */,
-				036A604B23D8C9A00052A2D6 /* DatabaseHelper.swift */,
 				037C31D223D0915C002B7E75 /* SceneDelegate.swift */,
 				037C31DB23D09161002B7E75 /* LaunchScreen.storyboard */,
 				037C31DE23D09161002B7E75 /* Info.plist */,
@@ -154,28 +129,8 @@
 				036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */,
 				036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */,
 				036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */,
-				037C31F623D11E86002B7E75 /* Data.swift */,
-				037C31FC23D1D137002B7E75 /* Car */,
-				037C31F123D111E7002B7E75 /* Clients */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		037C31F123D111E7002B7E75 /* Clients */ = {
-			isa = PBXGroup;
-			children = (
-				037C31F223D11458002B7E75 /* ClientModel.swift */,
-				037C31F423D11466002B7E75 /* ClientsFunctions.swift */,
-			);
-			path = Clients;
-			sourceTree = "<group>";
-		};
-		037C31FC23D1D137002B7E75 /* Car */ = {
-			isa = PBXGroup;
-			children = (
-				037C31FA23D1D127002B7E75 /* CarModel.swift */,
-			);
-			path = Car;
 			sourceTree = "<group>";
 		};
 		037C31FF23D1D452002B7E75 /* CarViewController */ = {
@@ -258,7 +213,6 @@
 				037C31DD23D09161002B7E75 /* LaunchScreen.storyboard in Resources */,
 				037C320323D2021E002B7E75 /* ProcessDetails.storyboard in Resources */,
 				037C31FE23D1D43B002B7E75 /* Car.storyboard in Resources */,
-				03681F0523D250000018021F /* AddClient.storyboard in Resources */,
 				037C31DA23D09161002B7E75 /* Assets.xcassets in Resources */,
 				037C31ED23D0DDAE002B7E75 /* Clients.storyboard in Resources */,
 			);
@@ -273,26 +227,20 @@
 			files = (
 				03681F4623D607390018021F /* Repairs+CoreDataProperties.swift in Sources */,
 				036A605423D8CEBE0052A2D6 /* Car+CoreDataProperties.swift in Sources */,
-				037C31F523D11466002B7E75 /* ClientsFunctions.swift in Sources */,
 				036A605123D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift in Sources */,
 				037C31D123D0915C002B7E75 /* AppDelegate.swift in Sources */,
 				037C320623D2029C002B7E75 /* ProcessDetailsViewController.swift in Sources */,
 				03681F0C23D253530018021F /* UIViewExtensions.swift in Sources */,
-				037C31F323D11458002B7E75 /* ClientModel.swift in Sources */,
 				03681F3E23D605970018021F /* PersistanceService.swift in Sources */,
 				037C31EF23D0E198002B7E75 /* ContactsViewController.swift in Sources */,
 				036A605623D8DF590052A2D6 /* AlertControllerExtension.swift in Sources */,
 				037C31E523D0A84C002B7E75 /* GradientView.swift in Sources */,
 				037C320123D1D496002B7E75 /* CarViewController.swift in Sources */,
-				036A604C23D8C9A00052A2D6 /* DatabaseHelper.swift in Sources */,
 				03681F0E23D4E1780018021F /* CarTableViewCell.swift in Sources */,
 				03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */,
-				037C31FB23D1D128002B7E75 /* CarModel.swift in Sources */,
-				037C31F723D11E86002B7E75 /* Data.swift in Sources */,
 				037C31F923D138DA002B7E75 /* ClientTableViewCell.swift in Sources */,
 				036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */,
 				037C31D323D0915C002B7E75 /* SceneDelegate.swift in Sources */,
-				03681F0923D250970018021F /* AddClientViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
