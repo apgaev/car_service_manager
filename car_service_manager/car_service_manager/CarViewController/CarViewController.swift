@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CarViewController: UIViewController {
 
@@ -20,43 +21,50 @@ class CarViewController: UIViewController {
     
     let imagePicker = UIImagePickerController()
     var repairs: [String] = ["Бампер", "Крыло"]
-    
+    var clientIDToEdit: UUID?
     var onSave: ((_ data: Car) -> ())?
+    var clients = [Car]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
+        coreDataInitialSetup()
         makeTappableImage()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "toCarViewController" {
-                let popup = segue.destination as! ProcessDetailsViewController
-                popup.onSave = { (data) in
-                    self.repairs.append(data)
-                    self.tableView.reloadData()
-                }
-            }
-        }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//            if segue.identifier == "toCarViewController" {
+//                let popup = segue.destination as! ProcessDetailsViewController
+//                popup.onSave = { (data) in
+//                    self.repairs.append(data)
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }
     
     @IBAction func returnWithSomeDataToContactsViewController(_ sender: Any) {
-                let name = clientNameTextInput.text!
-                let carName = carTextField.text!
-                let car = Car(context: PersistanceService.context)
-                let png = self.saveImage.image?.pngData()
-                car.carName = carName
-                car.owner = name
-                car.carImage = png
-                car.phone = phoneTextField.text!
-                
-                //self.contacts.append(car)
-                //self.contactsTableView.reloadData()
-                PersistanceService.saveContext()
-                onSave?(car)
-                dismiss(animated: true)
+        print(self.clientIDToEdit)
+        if let index = self.clientIDToEdit {
+            let car = clients.filter({return $0.id == index})[0]
+            car.carName = carTextField.text!
+            car.owner = clientNameTextInput.text!
+            car.carImage = self.saveImage.image?.pngData()
+            car.phone = phoneTextField.text!
+            PersistanceService.saveContext()
+            onSave?(car)
+        } else {
+            let car = Car(context: PersistanceService.context)
+            car.carName = carTextField.text!
+            car.owner = clientNameTextInput.text!
+            car.carImage = self.saveImage.image?.pngData()
+            car.phone = phoneTextField.text!
+            car.id = UUID()
+            PersistanceService.saveContext()
+            onSave?(car)
+        }
+        dismiss(animated: true)
     }
-    
 }
 
 extension CarViewController: UITableViewDataSource {
@@ -69,6 +77,31 @@ extension CarViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CarTableViewCell
         cell.titleLabel.text = repairs[indexPath.row]
         return cell
+    }
+}
+
+// MARK: - Core Data layout functions
+extension CarViewController {
+    func coreDataInitialSetup () {
+        //fill the form with editied cell's properties
+        print("in car's extension \(self.clientIDToEdit)")
+        if let index = self.clientIDToEdit {
+            let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
+            do {
+                let contacts = try PersistanceService.context.fetch(fetchRequest)
+                let client = contacts.filter({return $0.id == index})
+                self.clients = contacts
+                if let imageData = client[0].carImage {
+                    backgroundImageView.image = UIImage(data: imageData)
+                }
+                if let carName = client[0].owner {
+                    carTextField.text = carName
+                }
+                if let clientName = client[0].carName {
+                    clientNameTextInput.text = clientName
+                }
+            } catch {}
+        }
     }
 }
 

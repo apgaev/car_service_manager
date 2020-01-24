@@ -16,9 +16,8 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var searchOptions: UIButton!
     
-    //let imagePicker = UIImagePickerController()
-    
-    //var clientIndexToEdit: Int?
+    var clientIDToEdit: UUID?
+    var clientIsEdited: Bool?
     var contacts = [Car]()
     
    // var searchContact = [String]()
@@ -29,41 +28,36 @@ class ContactsViewController: UIViewController {
         
         //configureLayout()
         coreDataInitialSetup()
+        clientIDToEdit = nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toCarViewController" {
             let popup = segue.destination as! CarViewController
-            popup.onSave = { (data) in
-                let name = data.owner
-                let carName = data.carName
-                let car = Car(context: PersistanceService.context)
-                let png = data.carImage
-                car.carName = carName
-                car.owner = name
-                car.carImage = png
-                car.phone = data.phone
-                
-                self.contacts.append(car)
-                self.contactsTableView.reloadData()
+            if let _ = self.clientIDToEdit {
+                self.clientIsEdited = true
             }
+            popup.clientIDToEdit = self.clientIDToEdit
+            popup.onSave = { (data) in
+                if self.clientIsEdited != true {
+                    let name = data.owner
+                    let carName = data.carName
+                    let car = Car(context: PersistanceService.context)
+                    let png = data.carImage
+                    car.carName = carName
+                    car.owner = name
+                    car.carImage = png
+                    car.phone = data.phone
+                    car.id = data.id
+                    
+                    self.contacts.append(car)
+                }
+                self.contactsTableView.reloadData()
+                self.clientIsEdited = false
+            }
+            clientIDToEdit = nil
         }
     }
-    
-//    @IBAction func addToCoreData(_ sender: Any) {
-//        let name = clientNameTextInput.text!
-//        let carName = carTextField.text!
-//        let car = Car(context: PersistanceService.context)
-//        let png = self.saveImage.image?.pngData()
-//        car.carName = carName
-//        car.owner = name
-//        car.carImage = png
-//
-//        self.contacts.append(car)
-//        self.contactsTableView.reloadData()
-//        toggleAddingMenu()
-//        PersistanceService.saveContext()
-//    }
     
 //    @IBAction func addNewClient() {
 //        toggleAddingMenu()
@@ -91,6 +85,7 @@ class ContactsViewController: UIViewController {
 // MARK: - Core Data layout functions
 extension ContactsViewController {
     func coreDataInitialSetup () {
+        //loads initially
         let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
         do {
             let contacts = try PersistanceService.context.fetch(fetchRequest)
@@ -127,50 +122,53 @@ extension ContactsViewController: UITableViewDataSource {
     }
 }
 
-//extension ContactsViewController: UITableViewDelegate {
-//    
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        
-//        let client = Data.clientModels[indexPath.row]
-//        
-//        let delete = UIContextualAction(style: .destructive, title: "Удалить") { (contextualAction, view, actionPerformed: @escaping (Bool) -> ()) in
-//            
-//            let alert = UIAlertController(title: "Удалить клиента", message: "Вы точно хотите удалить клиента \(client.clientName)?", preferredStyle: .alert)
-//            
-//            alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: { (alertAction) in
-//                actionPerformed(false)
-//            }))
-//            
-//            alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (alertAction) in
-//                ClientsFunctions.deleteClient(index: indexPath.row)
-//                tableView.deleteRows(at: [indexPath], with: .automatic)
-//            }))
-//            
-//            self.present(alert, animated: true)
-//        }
-//        delete.image = UIImage.init(systemName: "delete.left.fill")
-//        return UISwipeActionsConfiguration(actions: [delete])
-//    }
-//    
-//    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> ()) in
-//            self.clientIndexToEdit = indexPath.row
-//            self.performSegue(withIdentifier: "toAddClientSegue", sender: nil)
-//            actionPerformed(true)
-//        }
-//        edit.image = UIImage.init(systemName: "pencil")
-//        return UISwipeActionsConfiguration(actions: [edit])
-//    }
-//    
+extension ContactsViewController: UITableViewDelegate {
+    
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let client = Data.clientModels[indexPath.row]
-//        
+//
 //        let storyboard = UIStoryboard(name: "Car", bundle: nil)
 //        let vc = storyboard.instantiateInitialViewController() as! CarViewController
 //        vc.clientId = client.id
 //        navigationController?.pushViewController(vc, animated: true)
 //    }
-//}
+    
+    // MARK: - Swiping actions
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//
+//        let client = Data.clientModels[indexPath.row]
+//
+//        let delete = UIContextualAction(style: .destructive, title: "Удалить") { (contextualAction, view, actionPerformed: @escaping (Bool) -> ()) in
+//
+//            let alert = UIAlertController(title: "Удалить клиента", message: "Вы точно хотите удалить клиента \(client.clientName)?", preferredStyle: .alert)
+//
+//            alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: { (alertAction) in
+//                actionPerformed(false)
+//            }))
+//
+//            alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (alertAction) in
+//                ClientsFunctions.deleteClient(index: indexPath.row)
+//                tableView.deleteRows(at: [indexPath], with: .automatic)
+//            }))
+//
+//            self.present(alert, animated: true)
+//        }
+//        delete.image = UIImage.init(systemName: "delete.left.fill")
+//        return UISwipeActionsConfiguration(actions: [delete])
+//    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> ()) in
+            let car = self.contacts[indexPath.row]
+            self.clientIDToEdit = car.id
+            print("in extension \(self.clientIDToEdit)")
+            self.performSegue(withIdentifier: "toCarViewController", sender: nil)
+            actionPerformed(true)
+        }
+        edit.image = UIImage.init(systemName: "pencil")
+        return UISwipeActionsConfiguration(actions: [edit])
+    }
+}
 //
 //extension ContactsViewController: UISearchBarDelegate {
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
