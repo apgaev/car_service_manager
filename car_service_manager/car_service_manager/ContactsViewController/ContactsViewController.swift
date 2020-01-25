@@ -16,7 +16,7 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var searchOptions: UIButton!
     
-    var clientIDToEdit: UUID?
+    var carToEdit: Car?
     var clientIsEdited: Bool?
     var contacts = [Car]()
     
@@ -28,18 +28,18 @@ class ContactsViewController: UIViewController {
         
         //configureLayout()
         coreDataInitialSetup()
-        clientIDToEdit = nil
+        carToEdit = nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toCarViewController" {
             let popup = segue.destination as! CarViewController
-            if let _ = self.clientIDToEdit {
-                self.clientIsEdited = true
-            }
-            popup.clientIDToEdit = self.clientIDToEdit
+//            if let _ = self.carToEdit {
+//                self.clientIsEdited = true
+//            }
+            popup.carToEdit = self.carToEdit
             popup.onSave = { (data) in
-                if self.clientIsEdited != true {
+                //if self.clientIsEdited != true {
                     let name = data.owner
                     let carName = data.carName
                     let car = Car(context: PersistanceService.context)
@@ -49,13 +49,21 @@ class ContactsViewController: UIViewController {
                     car.carImage = png
                     car.phone = data.phone
                     car.id = data.id
-                    
-                    self.contacts.append(car)
+                if self.carToEdit == nil {
+                    DispatchQueue.main.async {
+                        self.contacts.append(car)
+                        print("in func \(self.contacts.last?.owner)")
+                    }
+                    //self.contacts.append(car)
+                    //print("in func \(self.contacts.last?.owner)")
                 }
+                DispatchQueue.main.async {
                 self.contactsTableView.reloadData()
+                }
                 self.clientIsEdited = false
+                PersistanceService.saveContext()
             }
-            clientIDToEdit = nil
+            self.carToEdit = nil
         }
     }
     
@@ -97,11 +105,12 @@ extension ContactsViewController {
 
 // MARK: - TableView Extensions
 extension ContactsViewController: UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //if searching {
             //return searchContact.count
         //} else {
+        //DispatchQueue.main.async {
             return contacts.count
         //}
     }
@@ -111,10 +120,15 @@ extension ContactsViewController: UITableViewDataSource {
 //        if searching {
 //            cell.textLabel?.text = searchContact[indexPath.row]
 //        } else {
-        cell.carNameLabel.text = contacts[indexPath.row].owner
-        cell.clientNameLabel.text = contacts[indexPath.row].carName
+        print("contacts last \(self.contacts.last?.owner)")
+        print("contacts index path \(self.contacts[indexPath.row].owner)")
+        //DispatchQueue.main.async {
+            
         
-        if let imageData = contacts[indexPath.row].carImage {
+        cell.carNameLabel.text = self.contacts[indexPath.row].owner
+        cell.clientNameLabel.text = self.contacts[indexPath.row].carName
+        
+        if let imageData = self.contacts[indexPath.row].carImage {
             cell.clientImageView.image = UIImage(data: imageData)
         }
         //}
@@ -124,14 +138,13 @@ extension ContactsViewController: UITableViewDataSource {
 
 extension ContactsViewController: UITableViewDelegate {
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let client = Data.clientModels[indexPath.row]
-//
-//        let storyboard = UIStoryboard(name: "Car", bundle: nil)
-//        let vc = storyboard.instantiateInitialViewController() as! CarViewController
-//        vc.clientId = client.id
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let car = self.contacts[indexPath.row]
+        self.carToEdit = car
+        //print("in extension \(self.carToEdit)")
+        self.performSegue(withIdentifier: "toCarViewController", sender: nil)
+        //actionPerformed(true)
+    }
     
     // MARK: - Swiping actions
 //    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -157,17 +170,17 @@ extension ContactsViewController: UITableViewDelegate {
 //        return UISwipeActionsConfiguration(actions: [delete])
 //    }
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> ()) in
-            let car = self.contacts[indexPath.row]
-            self.clientIDToEdit = car.id
-            print("in extension \(self.clientIDToEdit)")
-            self.performSegue(withIdentifier: "toCarViewController", sender: nil)
-            actionPerformed(true)
-        }
-        edit.image = UIImage.init(systemName: "pencil")
-        return UISwipeActionsConfiguration(actions: [edit])
-    }
+//    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> ()) in
+//            let car = self.contacts[indexPath.row]
+//            self.clientIDToEdit = car.id
+//            print("in extension \(self.clientIDToEdit)")
+//            self.performSegue(withIdentifier: "toCarViewController", sender: nil)
+//            actionPerformed(true)
+//        }
+//        edit.image = UIImage.init(systemName: "pencil")
+//        return UISwipeActionsConfiguration(actions: [edit])
+//    }
 }
 //
 //extension ContactsViewController: UISearchBarDelegate {

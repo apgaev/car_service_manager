@@ -21,7 +21,7 @@ class CarViewController: UIViewController {
     
     let imagePicker = UIImagePickerController()
     var repairs: [String] = ["Бампер", "Крыло"]
-    var clientIDToEdit: UUID?
+    var carToEdit: Car?
     var onSave: ((_ data: Car) -> ())?
     var clients = [Car]()
     
@@ -44,14 +44,14 @@ class CarViewController: UIViewController {
 //        }
     
     @IBAction func returnWithSomeDataToContactsViewController(_ sender: Any) {
-        print(self.clientIDToEdit)
-        if let index = self.clientIDToEdit {
-            let car = clients.filter({return $0.id == index})[0]
+        //print(self.carToEdit)
+        if let car = self.carToEdit {
+            //let car = clients.filter({return $0.id == index})[0]
             car.carName = carTextField.text!
             car.owner = clientNameTextInput.text!
             car.carImage = self.saveImage.image?.pngData()
             car.phone = phoneTextField.text!
-            PersistanceService.saveContext()
+            //PersistanceService.saveContext()
             onSave?(car)
         } else {
             let car = Car(context: PersistanceService.context)
@@ -60,7 +60,7 @@ class CarViewController: UIViewController {
             car.carImage = self.saveImage.image?.pngData()
             car.phone = phoneTextField.text!
             car.id = UUID()
-            PersistanceService.saveContext()
+            //PersistanceService.saveContext()
             onSave?(car)
         }
         dismiss(animated: true)
@@ -84,23 +84,23 @@ extension CarViewController: UITableViewDataSource {
 extension CarViewController {
     func coreDataInitialSetup () {
         //fill the form with editied cell's properties
-        print("in car's extension \(self.clientIDToEdit)")
-        if let index = self.clientIDToEdit {
-            let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
+        //print("in car's extension \(self.carToEdit)")
+        if let index = self.carToEdit {
+            //let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
             do {
-                let contacts = try PersistanceService.context.fetch(fetchRequest)
-                let client = contacts.filter({return $0.id == index})
-                self.clients = contacts
-                if let imageData = client[0].carImage {
+                //self.clients = try PersistanceService.context.fetch(fetchRequest)
+                //let client = self.clients.filter({return $0.id == index})
+
+                if let imageData = index.carImage {
                     backgroundImageView.image = UIImage(data: imageData)
                 }
-                if let carName = client[0].owner {
+                if let carName = index.owner {
                     carTextField.text = carName
                 }
-                if let clientName = client[0].carName {
+                if let clientName = index.carName {
                     clientNameTextInput.text = clientName
                 }
-            } catch {}
+            } //catch {}
         }
     }
 }

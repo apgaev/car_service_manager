@@ -7,6 +7,11 @@
         <attribute name="owner" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <relationship name="carRepairs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Repairs" inverseName="repairedCar" inverseEntity="Repairs"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Repairs" representedClassName="Repairs" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
