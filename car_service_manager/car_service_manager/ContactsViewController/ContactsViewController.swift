@@ -154,8 +154,26 @@ extension ContactsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            contacts = DatabaseHelper.shareInstance.deleteData(index: indexPath.row)
-            self.contactsTableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            //let delete = UIContextualAction(style: .destructive, title: "Удалить") { (contextualAction, view, actionPerformed: @escaping (Bool) -> ()) in
+            
+                let alert = UIAlertController(title: "Удалить клиента", message: "Вы точно хотите удалить \(self.contacts[indexPath.row].carName!)?", preferredStyle: .alert)
+            
+                        alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: { (alertAction) in
+                            //actionPerformed(false)
+                            self.dismiss(animated: true)
+                        }))
+            
+                        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (alertAction) in
+                            self.contacts = DatabaseHelper.shareInstance.deleteData(index: indexPath.row)
+                            self.contactsTableView.deleteRows(at: [indexPath], with: .automatic)
+                        }))
+            
+                        self.present(alert, animated: true)
+                    //}
+            
+//            contacts = DatabaseHelper.shareInstance.deleteData(index: indexPath.row)
+//            self.contactsTableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
 }
