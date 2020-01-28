@@ -25,18 +25,16 @@ class ContactsViewController: UIViewController {
         
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
-//        let addButton = UIBarButtonItem(image: UIImage.init(systemName: "plus.circle"), style: UIBarButtonItem.Style.plain , target: self, action: Selector(("OnMenuClicked:")))
-//        navigationItem.rightBarButtonItem = addButton
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toCarViewController" {
-            let destVC = segue.destination as! CarViewController
-            
-            destVC.carToEdit = (sender as? [Car: Int])!
-            destVC.isUpdate = true
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toCarViewController" {
+//            let destVC = segue.destination as! CarViewController
+//
+//            destVC.carToEdit = (sender as? [Car: Int])!
+//            destVC.isUpdate = true
+//        }
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -97,10 +95,16 @@ extension ContactsViewController: UITableViewDataSource {
 extension ContactsViewController: UITableViewDelegate {
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = UIStoryboard(name: "Car", bundle: nil).instantiateInitialViewController() as! CarViewController
+        vc.isUpdate = true
         let car = contacts[indexPath.row]
-        let i = indexPath.row
-        let senderDict = [car: i] as [Car: Int]
-        performSegue(withIdentifier: "toCarViewController", sender: senderDict)
+        vc.carDetails = car
+        vc.indexRow = indexPath.row
+        self.navigationController?.pushViewController(vc, animated: true)
+//        let i = indexPath.row
+//        let senderDict = [car: i] as [Car: Int]
+//        performSegue(withIdentifier: "toCarViewController", sender: senderDict)
     }
     
     // MARK: - Swiping actions

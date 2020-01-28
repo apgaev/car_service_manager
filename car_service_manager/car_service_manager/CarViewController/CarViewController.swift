@@ -19,35 +19,39 @@ class CarViewController: UIViewController {
     @IBOutlet weak var carTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     
-//    let imagePicker = UIImagePickerController()
+    let imagePicker = UIImagePickerController()
 //    var repairs: [String] = ["Бампер", "Крыло"]
     var carToEdit = [Car: Int]()
     var isUpdate = Bool()
-    var i = Int()
+    var indexRow = Int()
+    var carDetails: Car?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
-        //tableView.dataSource = self
-//        makeTappableImage()
+//        tableView.dataSource = self
+        makeTappableImage()
     }
     
     func setUI() {
-        clientNameTextInput.text = carToEdit.keys.first?.owner
-        carTextField.text = carToEdit.keys.first?.carName
-        
-        if let index = carToEdit.values.first {
-            i = index
+        if isUpdate {
+            clientNameTextInput.text = carDetails?.owner
+            carTextField.text = carDetails?.carName
+            phoneTextField.text = carDetails?.phone
+            if let theImage = carDetails?.carImage {
+                saveImage.image = UIImage(data: theImage)
+            }
         }
     }
     
     @IBAction func saveClick(_ sender: Any) {
         let dict = ["carName": carTextField.text, "owner": clientNameTextInput.text, "phone": phoneTextField.text]
+        let png = self.saveImage.image?.pngData()
         if isUpdate {
-            DatabaseHelper.shareInstance.editData(object: dict as! [String: String], i: i)
+            DatabaseHelper.shareInstance.editData(object: dict as! [String: String], image: png!,  i: indexRow)
         } else {
-            DatabaseHelper.shareInstance.save(object: dict as! [String:String])
+            DatabaseHelper.shareInstance.save(object: dict as! [String:String], image: png!)
         }
     }
     
@@ -76,32 +80,32 @@ class CarViewController: UIViewController {
 //}
 
 // MARK: - Tappable Image Functions
-//extension CarViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-//
-//    func makeTappableImage () {
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.selectImage(gesture:)))
-//        tapGesture.numberOfTouchesRequired = 1
-//        self.saveImage.isUserInteractionEnabled = true
-//        self.saveImage.addGestureRecognizer(tapGesture)
-//    }
-//
-//    @objc func selectImage(gesture: UITapGestureRecognizer) {
-//        self.openImagePicker()
-//    }
-//
-//    func openImagePicker() {
-//        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-//            imagePicker.delegate = self
-//            imagePicker.sourceType = .savedPhotosAlbum
-//            imagePicker.allowsEditing = false
-//            present(imagePicker, animated: true, completion: nil)
-//        }
-//    }
-//
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        dismiss(animated: true, completion: nil)
-//        if let img = info[.originalImage] as? UIImage {
-//            self.saveImage.image = img
-//        }
-//    }
-//}
+extension CarViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+
+    func makeTappableImage () {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.selectImage(gesture:)))
+        tapGesture.numberOfTouchesRequired = 1
+        self.saveImage.isUserInteractionEnabled = true
+        self.saveImage.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func selectImage(gesture: UITapGestureRecognizer) {
+        self.openImagePicker()
+    }
+
+    func openImagePicker() {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.allowsEditing = false
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+        if let img = info[.originalImage] as? UIImage {
+            self.saveImage.image = img
+        }
+    }
+}
