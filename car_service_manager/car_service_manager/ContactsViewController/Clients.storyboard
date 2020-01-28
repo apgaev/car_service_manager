@@ -56,6 +56,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcd-QW-XOy">
+                                                    <rect key="frame" x="312" y="9" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hNF-Hx-eXB" firstAttribute="trailing" secondItem="guP-Wf-URh" secondAttribute="trailingMargin" id="AzO-7B-eN8"/>
@@ -70,6 +77,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="carNameLabel" destination="qVd-g4-UgZ" id="OP0-BJ-G7n"/>
+                                            <outlet property="carNumberLabel" destination="fcd-QW-XOy" id="3T6-9h-cH2"/>
                                             <outlet property="clientImageView" destination="4K1-0d-CHJ" id="sfi-cY-bQp"/>
                                             <outlet property="clientNameLabel" destination="hNF-Hx-eXB" id="Jrb-r5-Lna"/>
                                         </connections>

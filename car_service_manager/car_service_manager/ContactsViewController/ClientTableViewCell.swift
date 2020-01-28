@@ -13,11 +13,16 @@ class ClientTableViewCell: UITableViewCell {
     @IBOutlet weak var carNameLabel: UILabel!
     @IBOutlet weak var clientImageView: UIImageView!
     @IBOutlet weak var clientNameLabel: UILabel!
+    @IBOutlet weak var carNumberLabel: UILabel!
     
     var car: Car! {
         didSet {
             carNameLabel.text = car.carName
             clientNameLabel.text = car.owner
+            carNumberLabel.text = car.phone
+            if let theImage = car.carImage {
+                clientImageView.image = UIImage(data: theImage)
+            }
         }
     }
     

@@ -14,27 +14,20 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
 
     var contacts = [Car]()
-    
-   // var searchContact = [String]()
-    //var searching = false
+    var searchContacts = [Car]()
+    var searchOwners = [Car]()
+    var searchCars = [Car]()
+    var searchNumbers = [Car]()
+    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         contacts = DatabaseHelper.shareInstance.getCarData()
-        
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toCarViewController" {
-//            let destVC = segue.destination as! CarViewController
-//
-//            destVC.carToEdit = (sender as? [Car: Int])!
-//            destVC.isUpdate = true
-//        }
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -52,21 +45,20 @@ class ContactsViewController: UIViewController {
 extension ContactsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searching {
+            return searchContacts.count
+        } else {
             return contacts.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell", for: indexPath) as! ClientTableViewCell
-//        if searching {
-//            cell.textLabel?.text = searchContact[indexPath.row]
-//        } else {
-//        cell.carNameLabel.text = self.contacts[indexPath.row].owner
-//        cell.clientNameLabel.text = self.contacts[indexPath.row].carName
-//
-//        if let imageData = self.contacts[indexPath.row].carImage {
-//            cell.clientImageView.image = UIImage(data: imageData)
-//        }
-        cell.car = contacts[indexPath.row]
+        if searching {
+            cell.car = searchContacts[indexPath.row]
+        } else {
+            cell.car = contacts[indexPath.row]
+        }
         return cell
     }
     
@@ -102,9 +94,6 @@ extension ContactsViewController: UITableViewDelegate {
         vc.carDetails = car
         vc.indexRow = indexPath.row
         self.navigationController?.pushViewController(vc, animated: true)
-//        let i = indexPath.row
-//        let senderDict = [car: i] as [Car: Int]
-//        performSegue(withIdentifier: "toCarViewController", sender: senderDict)
     }
     
     // MARK: - Swiping actions
@@ -144,10 +133,14 @@ extension ContactsViewController: UITableViewDelegate {
 //    }
 }
 //
-//extension ContactsViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-////        searchContact = contacts.filter({$0.prefix(searchText.count) == searchText})
-//        searching = true
-//        contactsTableView.reloadData()
-//    }
-//}
+extension ContactsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchOwners = contacts.filter({ $0.owner!.prefix(searchText.count) == searchText})
+        searchCars = contacts.filter({ $0.carName!.prefix(searchText.count) == searchText})
+        searchNumbers = contacts.filter({ $0.phone!.prefix(searchText.count) == searchText})
+        searchContacts = searchNumbers + searchCars + searchOwners
+        searchContacts = Array(Set(searchContacts))
+        searching = true
+        contactsTableView.reloadData()
+    }
+}
