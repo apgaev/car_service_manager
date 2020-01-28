@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d5r-fR-nMG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lN4-3F-1VU">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -101,7 +101,7 @@
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="plus.circle" catalog="system"/>
                                 <connections>
-                                    <segue destination="rPe-SD-RHR" kind="show" identifier="toCarViewController" id="VbR-if-MYa"/>
+                                    <action selector="toCreate:" destination="d5r-fR-nMG" eventType="touchUpInside" id="Vja-BT-IY7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -110,10 +110,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="Pw8-K4-hwU"/>
                     <connections>
-                        <outlet property="addButton" destination="as3-VL-RJU" id="GZK-up-ecx"/>
                         <outlet property="contactsSearchBar" destination="6rB-lX-Sa5" id="jfX-ei-1kY"/>
                         <outlet property="contactsTableView" destination="zTd-so-jYt" id="SyO-bE-nkV"/>
                         <outlet property="searchOptions" destination="9T6-xd-wPi" id="Qf2-Sx-GWQ"/>
+                        <segue destination="rPe-SD-RHR" kind="show" identifier="toCarViewController" id="QCq-Qy-Qx0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7N8-v2-L60" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -145,17 +145,35 @@
                     <blurEffect style="regular"/>
                 </visualEffectView>
             </objects>
-            <point key="canvasLocation" x="-7044.9275362318849" y="2175.6696428571427"/>
+            <point key="canvasLocation" x="-6134.7826086956529" y="2175.6696428571427"/>
         </scene>
-        <!--Car-->
+        <!--CarViewController-->
         <scene sceneID="VvZ-yA-WDR">
             <objects>
-                <viewControllerPlaceholder storyboardName="Car" id="rPe-SD-RHR" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Car" referencedIdentifier="CarViewController" id="rPe-SD-RHR" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Q2C-ZB-6vq"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRf-Pg-664" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6574" y="2176"/>
+            <point key="canvasLocation" x="-5581.1594202898559" y="2175.6696428571427"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Bui-Be-Ag0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lN4-3F-1VU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F5P-SR-4Zh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="d5r-fR-nMG" kind="relationship" relationship="rootViewController" id="wqA-ma-nCb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ogK-Zs-v3u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7044.9275362318849" y="2175.6696428571427"/>
         </scene>
     </scenes>
     <resources>

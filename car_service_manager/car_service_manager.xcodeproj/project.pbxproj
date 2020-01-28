@@ -12,6 +12,7 @@
 		03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */; };
 		03681F3E23D605970018021F /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3D23D605970018021F /* PersistanceService.swift */; };
 		03681F4623D607390018021F /* Repairs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */; };
+		03684AE123DFA33800C19B7C /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03684AE023DFA33800C19B7C /* DatabaseHelper.swift */; };
 		036A605123D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */; };
 		036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */; };
 		036A605423D8CEBE0052A2D6 /* Car+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */; };
@@ -36,6 +37,7 @@
 		03681F3323D4FD0F0018021F /* car_service_manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = car_service_manager.xcdatamodel; sourceTree = "<group>"; };
 		03681F3D23D605970018021F /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
 		03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repairs+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		03684AE023DFA33800C19B7C /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DatabaseHelper.swift; path = ContactsViewController/DatabaseHelper.swift; sourceTree = "<group>"; };
 		036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repairs+CoreDataClass.swift"; sourceTree = "<group>"; };
 		036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataClass.swift"; sourceTree = "<group>"; };
 		036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				037C31D923D09161002B7E75 /* Assets.xcassets */,
 				03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */,
 				037C31D023D0915C002B7E75 /* AppDelegate.swift */,
+				03684AE023DFA33800C19B7C /* DatabaseHelper.swift */,
 				03681F3D23D605970018021F /* PersistanceService.swift */,
 				037C31D223D0915C002B7E75 /* SceneDelegate.swift */,
 				037C31DB23D09161002B7E75 /* LaunchScreen.storyboard */,
@@ -241,6 +244,7 @@
 				037C31F923D138DA002B7E75 /* ClientTableViewCell.swift in Sources */,
 				036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */,
 				037C31D323D0915C002B7E75 /* SceneDelegate.swift in Sources */,
+				03684AE123DFA33800C19B7C /* DatabaseHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Car View Controller-->
+        <!--CarViewController-->
         <scene sceneID="9zS-nc-yyN">
             <objects>
-                <viewController id="4Im-dS-Lu5" customClass="CarViewController" customModule="car_service_manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="CarViewController" storyboardIdentifier="CarViewController" title="CarViewController" id="4Im-dS-Lu5" customClass="CarViewController" customModule="car_service_manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sPW-4N-C9W">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Сохранить"/>
                                 <connections>
-                                    <action selector="returnWithSomeDataToContactsViewController:" destination="4Im-dS-Lu5" eventType="touchUpInside" id="mA8-ey-d4s"/>
+                                    <action selector="saveClick:" destination="4Im-dS-Lu5" eventType="touchUpInside" id="aYN-J6-jtH"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Автомобиль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a1b-2P-s2B">
@@ -73,7 +73,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dC4-zn-V4Y">
-                                <rect key="frame" x="224" y="44" width="97" height="34"/>
+                                <rect key="frame" x="224" y="160" width="97" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>

@@ -16,8 +16,7 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var searchOptions: UIButton!
     
-    var carToEdit: Car?
-    var clientIsEdited: Bool?
+//    var carToEdit: Car?
     var contacts = [Car]()
     
    // var searchContact = [String]()
@@ -26,46 +25,66 @@ class ContactsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        contacts = DatabaseHelper.shareInstance.getCarData()
+        
         //configureLayout()
-        coreDataInitialSetup()
-        carToEdit = nil
+//        coreDataInitialSetup()
+//        carToEdit = nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toCarViewController" {
-            let popup = segue.destination as! CarViewController
-//            if let _ = self.carToEdit {
-//                self.clientIsEdited = true
-//            }
-            popup.carToEdit = self.carToEdit
-            popup.onSave = { (data) in
-                //if self.clientIsEdited != true {
-                    let name = data.owner
-                    let carName = data.carName
-                    let car = Car(context: PersistanceService.context)
-                    let png = data.carImage
-                    car.carName = carName
-                    car.owner = name
-                    car.carImage = png
-                    car.phone = data.phone
-                    car.id = data.id
-                if self.carToEdit == nil {
-                    DispatchQueue.main.async {
-                        self.contacts.append(car)
-                        print("in func \(self.contacts.last?.owner)")
-                    }
-                    //self.contacts.append(car)
-                    //print("in func \(self.contacts.last?.owner)")
-                }
-                DispatchQueue.main.async {
-                self.contactsTableView.reloadData()
-                }
-                self.clientIsEdited = false
-                PersistanceService.saveContext()
-            }
-            self.carToEdit = nil
+            let destVC = segue.destination as! CarViewController
+            
+            destVC.carToEdit = (sender as? [Car: Int])!
+            destVC.isUpdate = true
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        contacts = DatabaseHelper.shareInstance.getCarData()
+        contactsTableView.reloadData()
+    }
+    
+    @IBAction func toCreate(_ sender: Any) {
+        let vc = UIStoryboard(name: "Car", bundle: nil).instantiateInitialViewController() as! CarViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+//        let carVC = storyboard?.instantiateViewController(identifier: "CarViewController") as! CarViewController
+//        self.navigationController?.pushViewController(carVC, animated: true)
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toCarViewController" {
+//            let popup = segue.destination as! CarViewController
+//            popup.carToEdit = self.carToEdit
+//            popup.onSave = { (data) in
+//                PersistanceService.context.perform {
+//                    let name = data.owner
+//                    let carName = data.carName
+//                    let car = Car(context: PersistanceService.context)
+//                    let png = data.carImage
+//                    car.carName = carName
+//                    car.owner = name
+//                    car.carImage = png
+//                    car.phone = data.phone
+//                    car.id = data.id
+//                    if self.carToEdit == nil {
+//                        DispatchQueue.main.async {
+//                            self.contacts.append(car)
+//                        }
+//                    }
+//                    DispatchQueue.main.async {
+//                        self.contactsTableView.reloadData()
+//                    }
+//                    PersistanceService.saveContext()
+//                }
+//            }
+//            self.carToEdit = nil
+//        }
+//    }
     
 //    @IBAction func addNewClient() {
 //        toggleAddingMenu()
@@ -91,17 +110,17 @@ class ContactsViewController: UIViewController {
 //}
 
 // MARK: - Core Data layout functions
-extension ContactsViewController {
-    func coreDataInitialSetup () {
-        //loads initially
-        let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
-        do {
-            let contacts = try PersistanceService.context.fetch(fetchRequest)
-            self.contacts = contacts
-            self.contactsTableView.reloadData()
-        } catch {}
-    }
-}
+//extension ContactsViewController {
+//    func coreDataInitialSetup () {
+//        //loads initially
+//        let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
+//        do {
+//            let contacts = try PersistanceService.context.fetch(fetchRequest)
+//            self.contacts = contacts
+//            self.contactsTableView.reloadData()
+//        } catch {}
+//    }
+//}
 
 // MARK: - TableView Extensions
 extension ContactsViewController: UITableViewDataSource {
@@ -110,39 +129,46 @@ extension ContactsViewController: UITableViewDataSource {
         //if searching {
             //return searchContact.count
         //} else {
-        //DispatchQueue.main.async {
             return contacts.count
         //}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell") as! ClientTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell", for: indexPath) as! ClientTableViewCell
 //        if searching {
 //            cell.textLabel?.text = searchContact[indexPath.row]
 //        } else {
-        print("contacts last \(self.contacts.last?.owner)")
-        print("contacts index path \(self.contacts[indexPath.row].owner)")
-        //DispatchQueue.main.async {
-            
-        
-        cell.carNameLabel.text = self.contacts[indexPath.row].owner
-        cell.clientNameLabel.text = self.contacts[indexPath.row].carName
-        
-        if let imageData = self.contacts[indexPath.row].carImage {
-            cell.clientImageView.image = UIImage(data: imageData)
-        }
-        //}
+//        cell.carNameLabel.text = self.contacts[indexPath.row].owner
+//        cell.clientNameLabel.text = self.contacts[indexPath.row].carName
+//
+//        if let imageData = self.contacts[indexPath.row].carImage {
+//            cell.clientImageView.image = UIImage(data: imageData)
+//        }
+        cell.car = contacts[indexPath.row]
         return cell
     }
-}
-
-extension ContactsViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            contacts = DatabaseHelper.shareInstance.deleteData(index: indexPath.row)
+            self.contactsTableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+}
+//
+extension ContactsViewController: UITableViewDelegate {
+   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let car = self.contacts[indexPath.row]
-        self.carToEdit = car
-        //print("in extension \(self.carToEdit)")
-        self.performSegue(withIdentifier: "toCarViewController", sender: nil)
+        let car = contacts[indexPath.row]
+        let i = indexPath.row
+        let senderDict = [car: i] as [Car: Int]
+        performSegue(withIdentifier: "toCarViewController", sender: senderDict)
+//        self.carToEdit = car
+//        self.performSegue(withIdentifier: "toCarViewController", sender: nil)
         //actionPerformed(true)
     }
     
