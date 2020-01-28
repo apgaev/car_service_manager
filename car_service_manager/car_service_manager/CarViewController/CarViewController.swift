@@ -24,14 +24,12 @@ class CarViewController: UIViewController {
     var carToEdit = [Car: Int]()
     var isUpdate = Bool()
     var i = Int()
-//    var onSave: ((_ data: Car) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         //tableView.dataSource = self
-//        coreDataInitialSetup()
 //        makeTappableImage()
     }
     
@@ -52,6 +50,7 @@ class CarViewController: UIViewController {
             DatabaseHelper.shareInstance.save(object: dict as! [String:String])
         }
     }
+    
     //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //            if segue.identifier == "toCarViewController" {
 //                let popup = segue.destination as! ProcessDetailsViewController
@@ -61,31 +60,6 @@ class CarViewController: UIViewController {
 //                }
 //            }
 //        }
-    
-//    @IBAction func returnWithSomeDataToContactsViewController(_ sender: Any) {
-//        if let car = self.carToEdit {
-//            car.carName = carTextField.text!
-//            car.owner = clientNameTextInput.text!
-//            car.carImage = self.saveImage.image?.pngData()
-//            car.phone = phoneTextField.text!
-//            //PersistanceService.saveContext()
-//            DispatchQueue.main.async {
-//                self.onSave?(car)
-//            }
-//        } else {
-//            let car = Car(context: PersistanceService.context)
-//            car.carName = carTextField.text!
-//            car.owner = clientNameTextInput.text!
-//            car.carImage = self.saveImage.image?.pngData()
-//            car.phone = phoneTextField.text!
-//            car.id = UUID()
-//            //PersistanceService.saveContext()
-//            DispatchQueue.main.async {
-//                self.onSave?(car)
-//            }
-//        }
-//        dismiss(animated: true)
-//    }
 }
 
 //extension CarViewController: UITableViewDataSource {
@@ -98,25 +72,6 @@ class CarViewController: UIViewController {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CarTableViewCell
 //        cell.titleLabel.text = repairs[indexPath.row]
 //        return cell
-//    }
-//}
-
-// MARK: - Core Data layout functions
-//extension CarViewController {
-//    func coreDataInitialSetup () {
-//        //fill the form with editied cell's properties
-//        if let index = self.carToEdit {
-//            //let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
-//                if let imageData = index.carImage {
-//                    backgroundImageView.image = UIImage(data: imageData)
-//                }
-//                if let carName = index.owner {
-//                    carTextField.text = carName
-//                }
-//                if let clientName = index.carName {
-//                    clientNameTextInput.text = clientName
-//                }
-//        }
 //    }
 //}
 

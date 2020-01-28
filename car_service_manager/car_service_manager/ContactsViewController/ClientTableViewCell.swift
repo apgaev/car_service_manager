@@ -30,10 +30,4 @@ class ClientTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-//    func setup(model: ClientModel) {
-//        carNameLabel.text = model.clientName
-//        clientImageView.image = model.carImage
-//    }
-    
 }

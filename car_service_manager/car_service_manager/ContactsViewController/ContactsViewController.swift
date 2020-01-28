@@ -11,12 +11,8 @@ import CoreData
 
 class ContactsViewController: UIViewController {
 
-    @IBOutlet weak var contactsSearchBar: UISearchBar!
     @IBOutlet weak var contactsTableView: UITableView!
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var searchOptions: UIButton!
-    
-//    var carToEdit: Car?
+
     var contacts = [Car]()
     
    // var searchContact = [String]()
@@ -27,9 +23,10 @@ class ContactsViewController: UIViewController {
         
         contacts = DatabaseHelper.shareInstance.getCarData()
         
-        //configureLayout()
-//        coreDataInitialSetup()
-//        carToEdit = nil
+        let searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
+//        let addButton = UIBarButtonItem(image: UIImage.init(systemName: "plus.circle"), style: UIBarButtonItem.Style.plain , target: self, action: Selector(("OnMenuClicked:")))
+//        navigationItem.rightBarButtonItem = addButton
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,86 +48,13 @@ class ContactsViewController: UIViewController {
     @IBAction func toCreate(_ sender: Any) {
         let vc = UIStoryboard(name: "Car", bundle: nil).instantiateInitialViewController() as! CarViewController
         self.navigationController?.pushViewController(vc, animated: true)
-        
-//        let carVC = storyboard?.instantiateViewController(identifier: "CarViewController") as! CarViewController
-//        self.navigationController?.pushViewController(carVC, animated: true)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toCarViewController" {
-//            let popup = segue.destination as! CarViewController
-//            popup.carToEdit = self.carToEdit
-//            popup.onSave = { (data) in
-//                PersistanceService.context.perform {
-//                    let name = data.owner
-//                    let carName = data.carName
-//                    let car = Car(context: PersistanceService.context)
-//                    let png = data.carImage
-//                    car.carName = carName
-//                    car.owner = name
-//                    car.carImage = png
-//                    car.phone = data.phone
-//                    car.id = data.id
-//                    if self.carToEdit == nil {
-//                        DispatchQueue.main.async {
-//                            self.contacts.append(car)
-//                        }
-//                    }
-//                    DispatchQueue.main.async {
-//                        self.contactsTableView.reloadData()
-//                    }
-//                    PersistanceService.saveContext()
-//                }
-//            }
-//            self.carToEdit = nil
-//        }
-//    }
-    
-//    @IBAction func addNewClient() {
-//        toggleAddingMenu()
-//    }
 }
 
-// MARK: - Layout Extension
-//extension ContactsViewController {
-//    func configureLayout() {
-//        menuView.center = addButton.center
-//        menuView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-//    }
-//
-//    func toggleAddingMenu () {
-//        UIView.animate(withDuration: 0.3) {
-//        if self.menuView.transform == .identity {
-//            self.menuView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-//        } else {
-//            self.menuView.transform = .identity
-//        }
-//        }
-//    }
-//}
-
-// MARK: - Core Data layout functions
-//extension ContactsViewController {
-//    func coreDataInitialSetup () {
-//        //loads initially
-//        let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
-//        do {
-//            let contacts = try PersistanceService.context.fetch(fetchRequest)
-//            self.contacts = contacts
-//            self.contactsTableView.reloadData()
-//        } catch {}
-//    }
-//}
-
-// MARK: - TableView Extensions
 extension ContactsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //if searching {
-            //return searchContact.count
-        //} else {
             return contacts.count
-        //}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,30 +78,22 @@ extension ContactsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let alert = UIAlertController(title: "Удалить клиента", message: "Вы точно хотите удалить \(self.contacts[indexPath.row].carName!)?", preferredStyle: .alert)
             
-            //let delete = UIContextualAction(style: .destructive, title: "Удалить") { (contextualAction, view, actionPerformed: @escaping (Bool) -> ()) in
+            alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: { (alertAction) in
+                self.dismiss(animated: true)
+            }))
             
-                let alert = UIAlertController(title: "Удалить клиента", message: "Вы точно хотите удалить \(self.contacts[indexPath.row].carName!)?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (alertAction) in
+                self.contacts = DatabaseHelper.shareInstance.deleteData(index: indexPath.row)
+                self.contactsTableView.deleteRows(at: [indexPath], with: .automatic)
+            }))
             
-                        alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: { (alertAction) in
-                            //actionPerformed(false)
-                            self.dismiss(animated: true)
-                        }))
-            
-                        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (alertAction) in
-                            self.contacts = DatabaseHelper.shareInstance.deleteData(index: indexPath.row)
-                            self.contactsTableView.deleteRows(at: [indexPath], with: .automatic)
-                        }))
-            
-                        self.present(alert, animated: true)
-                    //}
-            
-//            contacts = DatabaseHelper.shareInstance.deleteData(index: indexPath.row)
-//            self.contactsTableView.deleteRows(at: [indexPath], with: .automatic)
+            self.present(alert, animated: true)
         }
     }
 }
-//
+
 extension ContactsViewController: UITableViewDelegate {
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -185,9 +101,6 @@ extension ContactsViewController: UITableViewDelegate {
         let i = indexPath.row
         let senderDict = [car: i] as [Car: Int]
         performSegue(withIdentifier: "toCarViewController", sender: senderDict)
-//        self.carToEdit = car
-//        self.performSegue(withIdentifier: "toCarViewController", sender: nil)
-        //actionPerformed(true)
     }
     
     // MARK: - Swiping actions
