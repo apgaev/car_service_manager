@@ -21,9 +21,8 @@ class CarViewController: UIViewController {
     
     let imagePicker = UIImagePickerController()
 //    var repairs: [String] = ["Бампер", "Крыло"]
-    var carToEdit = [Car: Int]()
     var isUpdate = Bool()
-    var indexRow = Int()
+    var indexRow: UUID?
     var carDetails: Car?
     
     override func viewDidLoad() {
@@ -49,7 +48,7 @@ class CarViewController: UIViewController {
         let dict = ["carName": carTextField.text, "owner": clientNameTextInput.text, "phone": phoneTextField.text]
         let png = self.saveImage.image?.pngData()
         if isUpdate {
-            DatabaseHelper.shareInstance.editData(object: dict as! [String: String], image: png!,  i: indexRow)
+            DatabaseHelper.shareInstance.editData(object: dict as! [String: String], image: png!,  i: indexRow!)
         } else {
             DatabaseHelper.shareInstance.save(object: dict as! [String:String], image: png!)
         }

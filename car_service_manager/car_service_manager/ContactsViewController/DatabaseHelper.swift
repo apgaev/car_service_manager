@@ -21,6 +21,7 @@ class DatabaseHelper {
             car.owner = object["owner"]
             car.phone = object["phone"]
             car.carImage = image
+            car.id = UUID()
             do {
                 try context?.save()
             } catch {
@@ -40,10 +41,12 @@ class DatabaseHelper {
         return car
     }
     
-    func deleteData(index: Int) -> [Car] {
+    func deleteData(index: UUID) -> [Car] {
         var car = getCarData()
-        context?.delete(car[index])
-        car.remove(at: index)
+        let theCar = car.filter({$0.id == index})
+        context?.delete(theCar[0])
+        car = car.filter({$0.id != index})
+        //car.remove(theCar[0])
         do {
             try context?.save()
         } catch {
@@ -52,13 +55,13 @@ class DatabaseHelper {
         return car
     }
     
-    func editData(object: [String: String], image: Data, i: Int) {
+    func editData(object: [String: String], image: Data, i: UUID) {
         let car = getCarData()
-        
-        car[i].carName = object["carName"]
-        car[i].owner = object["owner"]
-        car[i].phone = object["phone"]
-        car[i].carImage = image
+        let theCar = car.filter({$0.id == i})
+        theCar[0].carName = object["carName"]
+        theCar[0].owner = object["owner"]
+        theCar[0].phone = object["phone"]
+        theCar[0].carImage = image
         do {
             try context?.save()
         } catch {

@@ -24,6 +24,7 @@ class ContactsViewController: UIViewController {
         super.viewDidLoad()
         
         contacts = DatabaseHelper.shareInstance.getCarData()
+        searchContacts = contacts
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
@@ -33,6 +34,7 @@ class ContactsViewController: UIViewController {
         super.viewWillAppear(true)
         
         contacts = DatabaseHelper.shareInstance.getCarData()
+        searchContacts = contacts
         contactsTableView.reloadData()
     }
     
@@ -45,20 +47,20 @@ class ContactsViewController: UIViewController {
 extension ContactsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searching {
+        //if searching {
             return searchContacts.count
-        } else {
-            return contacts.count
-        }
+//        } else {
+//            return contacts.count
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell", for: indexPath) as! ClientTableViewCell
-        if searching {
+        //if searching {
             cell.car = searchContacts[indexPath.row]
-        } else {
-            cell.car = contacts[indexPath.row]
-        }
+//        } else {
+//            cell.car = contacts[indexPath.row]
+//        }
         return cell
     }
     
@@ -68,14 +70,14 @@ extension ContactsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Удалить клиента", message: "Вы точно хотите удалить \(self.contacts[indexPath.row].carName!)?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Удалить клиента", message: "Вы точно хотите удалить \(self.searchContacts[indexPath.row].carName!)?", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler: { (alertAction) in
                 self.dismiss(animated: true)
             }))
             
             alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (alertAction) in
-                self.contacts = DatabaseHelper.shareInstance.deleteData(index: indexPath.row)
+                self.searchContacts = DatabaseHelper.shareInstance.deleteData(index: self.searchContacts[indexPath.row].id!)
                 self.contactsTableView.deleteRows(at: [indexPath], with: .automatic)
             }))
             
@@ -90,9 +92,9 @@ extension ContactsViewController: UITableViewDelegate {
         
         let vc = UIStoryboard(name: "Car", bundle: nil).instantiateInitialViewController() as! CarViewController
         vc.isUpdate = true
-        let car = contacts[indexPath.row]
+        let car = searchContacts[indexPath.row]
         vc.carDetails = car
-        vc.indexRow = indexPath.row
+        vc.indexRow = car.id
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
