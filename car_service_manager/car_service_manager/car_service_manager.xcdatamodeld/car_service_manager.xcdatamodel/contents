@@ -3,24 +3,40 @@
     <entity name="Car" representedClassName="Car" syncable="YES">
         <attribute name="carImage" optional="YES" attributeType="Binary"/>
         <attribute name="carName" optional="YES" attributeType="String"/>
+        <attribute name="carNumber" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="owner" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
-        <relationship name="carRepairs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Repairs" inverseName="repairedCar" inverseEntity="Repairs"/>
+        <relationship name="carRepairs" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Repair" inverseName="repairedCar" inverseEntity="Repair"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Repairs" representedClassName="Repairs" syncable="YES">
+    <entity name="Repair" representedClassName="Repair" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="photo" optional="YES" attributeType="Binary"/>
+        <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="processName" optional="YES" attributeType="String"/>
+        <attribute name="startingDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <relationship name="repairedCar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Car" inverseName="carRepairs" inverseEntity="Car"/>
+        <relationship name="subProcess" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Subprocess" inverseName="mainProcess" inverseEntity="Subprocess"/>
+    </entity>
+    <entity name="Subprocess" representedClassName="Subprocess" syncable="YES">
+        <attribute name="cost" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="mainProcess" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Repair" inverseName="subProcess" inverseEntity="Repair"/>
     </entity>
     <elements>
-        <element name="Car" positionX="-1298.65234375" positionY="29.25390625" width="128" height="133"/>
-        <element name="Repairs" positionX="-1130.3515625" positionY="33.51953125" width="128" height="103"/>
+        <element name="Car" positionX="-1298.65234375" positionY="29.25390625" width="128" height="148"/>
+        <element name="Repair" positionX="-1034.640625" positionY="-80.9765625" width="128" height="163"/>
+        <element name="Subprocess" positionX="-1044.69140625" positionY="168.67578125" width="128" height="163"/>
     </elements>
 </model>

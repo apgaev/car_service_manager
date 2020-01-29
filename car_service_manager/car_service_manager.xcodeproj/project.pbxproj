@@ -10,9 +10,11 @@
 		03681F0C23D253530018021F /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0B23D253530018021F /* UIViewExtensions.swift */; };
 		03681F0E23D4E1780018021F /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0D23D4E1770018021F /* CarTableViewCell.swift */; };
 		03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */; };
-		03681F4623D607390018021F /* Repairs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */; };
 		03684AE123DFA33800C19B7C /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03684AE023DFA33800C19B7C /* DatabaseHelper.swift */; };
-		036A605123D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */; };
+		03684AE823E1BCBA00C19B7C /* Subprocess+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03684AE423E1BCBA00C19B7C /* Subprocess+CoreDataClass.swift */; };
+		03684AE923E1BCBA00C19B7C /* Subprocess+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03684AE523E1BCBA00C19B7C /* Subprocess+CoreDataProperties.swift */; };
+		03684AEA23E1BCBA00C19B7C /* Repair+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03684AE623E1BCBA00C19B7C /* Repair+CoreDataClass.swift */; };
+		03684AEB23E1BCBA00C19B7C /* Repair+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03684AE723E1BCBA00C19B7C /* Repair+CoreDataProperties.swift */; };
 		036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */; };
 		036A605423D8CEBE0052A2D6 /* Car+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */; };
 		036A605623D8DF590052A2D6 /* AlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036A605523D8DF590052A2D6 /* AlertControllerExtension.swift */; };
@@ -34,9 +36,11 @@
 		03681F0B23D253530018021F /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		03681F0D23D4E1770018021F /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		03681F3323D4FD0F0018021F /* car_service_manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = car_service_manager.xcdatamodel; sourceTree = "<group>"; };
-		03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repairs+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		03684AE023DFA33800C19B7C /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DatabaseHelper.swift; path = ContactsViewController/DatabaseHelper.swift; sourceTree = "<group>"; };
-		036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repairs+CoreDataClass.swift"; sourceTree = "<group>"; };
+		03684AE423E1BCBA00C19B7C /* Subprocess+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subprocess+CoreDataClass.swift"; sourceTree = "<group>"; };
+		03684AE523E1BCBA00C19B7C /* Subprocess+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subprocess+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		03684AE623E1BCBA00C19B7C /* Repair+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repair+CoreDataClass.swift"; sourceTree = "<group>"; };
+		03684AE723E1BCBA00C19B7C /* Repair+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repair+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataClass.swift"; sourceTree = "<group>"; };
 		036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		036A605523D8DF590052A2D6 /* AlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerExtension.swift; sourceTree = "<group>"; };
@@ -98,8 +102,8 @@
 			children = (
 				03681F0A23D253010018021F /* Extensions */,
 				037C31F023D11187002B7E75 /* Models */,
-				037C31FF23D1D452002B7E75 /* CarViewController */,
 				037C31EA23D0DAA2002B7E75 /* ContactsViewController */,
+				037C31FF23D1D452002B7E75 /* CarViewController */,
 				037C320423D20229002B7E75 /* ProcessDetailsViewController */,
 				037C31D923D09161002B7E75 /* Assets.xcassets */,
 				03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */,
@@ -125,10 +129,12 @@
 		037C31F023D11187002B7E75 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				03681F4223D607390018021F /* Repairs+CoreDataProperties.swift */,
-				036A604D23D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift */,
 				036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */,
 				036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */,
+				03684AE423E1BCBA00C19B7C /* Subprocess+CoreDataClass.swift */,
+				03684AE523E1BCBA00C19B7C /* Subprocess+CoreDataProperties.swift */,
+				03684AE623E1BCBA00C19B7C /* Repair+CoreDataClass.swift */,
+				03684AE723E1BCBA00C19B7C /* Repair+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,18 +231,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03681F4623D607390018021F /* Repairs+CoreDataProperties.swift in Sources */,
 				036A605423D8CEBE0052A2D6 /* Car+CoreDataProperties.swift in Sources */,
-				036A605123D8CEBE0052A2D6 /* Repairs+CoreDataClass.swift in Sources */,
 				037C31D123D0915C002B7E75 /* AppDelegate.swift in Sources */,
 				037C320623D2029C002B7E75 /* ProcessDetailsViewController.swift in Sources */,
 				03681F0C23D253530018021F /* UIViewExtensions.swift in Sources */,
 				037C31EF23D0E198002B7E75 /* ContactsViewController.swift in Sources */,
 				036A605623D8DF590052A2D6 /* AlertControllerExtension.swift in Sources */,
+				03684AEB23E1BCBA00C19B7C /* Repair+CoreDataProperties.swift in Sources */,
+				03684AE923E1BCBA00C19B7C /* Subprocess+CoreDataProperties.swift in Sources */,
+				03684AE823E1BCBA00C19B7C /* Subprocess+CoreDataClass.swift in Sources */,
 				037C31E523D0A84C002B7E75 /* GradientView.swift in Sources */,
 				037C320123D1D496002B7E75 /* CarViewController.swift in Sources */,
 				03681F0E23D4E1780018021F /* CarTableViewCell.swift in Sources */,
 				03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */,
+				03684AEA23E1BCBA00C19B7C /* Repair+CoreDataClass.swift in Sources */,
 				037C31F923D138DA002B7E75 /* ClientTableViewCell.swift in Sources */,
 				036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */,
 				037C31D323D0915C002B7E75 /* SceneDelegate.swift in Sources */,

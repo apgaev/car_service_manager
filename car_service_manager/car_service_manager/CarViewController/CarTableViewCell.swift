@@ -10,7 +10,9 @@ import UIKit
 
 class CarTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var repairNameLabel: UILabel!
+    @IBOutlet weak var repairStatusLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

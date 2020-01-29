@@ -47,20 +47,12 @@ class ContactsViewController: UIViewController {
 extension ContactsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //if searching {
             return searchContacts.count
-//        } else {
-//            return contacts.count
-//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell", for: indexPath) as! ClientTableViewCell
-        //if searching {
             cell.car = searchContacts[indexPath.row]
-//        } else {
-//            cell.car = contacts[indexPath.row]
-//        }
         return cell
     }
     
@@ -143,6 +135,11 @@ extension ContactsViewController: UISearchBarDelegate {
         searchContacts = searchNumbers + searchCars + searchOwners
         searchContacts = Array(Set(searchContacts))
         searching = true
+        contactsTableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchContacts = contacts
         contactsTableView.reloadData()
     }
 }

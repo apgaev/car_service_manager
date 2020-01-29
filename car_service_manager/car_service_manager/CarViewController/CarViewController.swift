@@ -20,7 +20,7 @@ class CarViewController: UIViewController {
     @IBOutlet weak var phoneTextField: UITextField!
     
     let imagePicker = UIImagePickerController()
-//    var repairs: [String] = ["Бампер", "Крыло"]
+    var repairs = [Repair]()
     var isUpdate = Bool()
     var indexRow: UUID?
     var carDetails: Car?
@@ -29,7 +29,9 @@ class CarViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
-//        tableView.dataSource = self
+        repairs = DatabaseHelper.shareInstance.getRepairData()
+        tableView.dataSource = self
+        tableView.reloadData()
         makeTappableImage()
     }
     
@@ -38,6 +40,7 @@ class CarViewController: UIViewController {
             clientNameTextInput.text = carDetails?.owner
             carTextField.text = carDetails?.carName
             phoneTextField.text = carDetails?.phone
+            carNumberTextField.text = carDetails?.carNumber
             if let theImage = carDetails?.carImage {
                 saveImage.image = UIImage(data: theImage)
             }
@@ -45,38 +48,36 @@ class CarViewController: UIViewController {
     }
     
     @IBAction func saveClick(_ sender: Any) {
-        let dict = ["carName": carTextField.text, "owner": clientNameTextInput.text, "phone": phoneTextField.text]
+        let dict = ["carName": carTextField.text, "owner": clientNameTextInput.text, "phone": phoneTextField.text, "carNumber": carNumberTextField.text]
         let png = self.saveImage.image?.pngData()
         if isUpdate {
-            DatabaseHelper.shareInstance.editData(object: dict as! [String: String], image: png!,  i: indexRow!)
+            DatabaseHelper.shareInstance.editData(object: dict as! [String: String], image: png!, i: indexRow!)
         } else {
             DatabaseHelper.shareInstance.save(object: dict as! [String:String], image: png!)
         }
+        self.navigationController?.popViewController(animated: true)
     }
     
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//            if segue.identifier == "toCarViewController" {
-//                let popup = segue.destination as! ProcessDetailsViewController
-//                popup.onSave = { (data) in
-//                    self.repairs.append(data)
-//                    self.tableView.reloadData()
-//                }
-//            }
-//        }
+    @IBAction func toCreate(_ sender: Any) {
+        let vc = UIStoryboard(name: "ProcessDetails", bundle: nil).instantiateInitialViewController() as! ProcessDetailsViewController
+        vc.car = carDetails!
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
-//extension CarViewController: UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return repairs.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CarTableViewCell
-//        cell.titleLabel.text = repairs[indexPath.row]
-//        return cell
-//    }
-//}
+extension CarViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return repairs.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CarTableViewCell
+        cell.repairNameLabel.text = repairs[indexPath.row].processName
+        cell.repairStatusLabel.text = repairs[indexPath.row].status
+        return cell
+    }
+}
 
 // MARK: - Tappable Image Functions
 extension CarViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {

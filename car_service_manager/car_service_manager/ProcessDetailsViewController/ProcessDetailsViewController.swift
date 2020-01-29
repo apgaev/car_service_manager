@@ -10,16 +10,24 @@ import UIKit
 
 class ProcessDetailsViewController: UIViewController {
 
-    @IBOutlet weak var dummyTextField: UITextField!
+    @IBOutlet weak var processNameTextField: UITextField!
+    @IBOutlet weak var statusLabel: UILabel!
     
-    var onSave: ((_ data: String) -> ())?
+    var isUpdate = Bool()
+    var car: Car?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    @IBAction func returnWithSomeDataToContactsViewController(_ sender: Any) {
-            onSave?(dummyTextField.text!)
-            dismiss(animated: true)
+    @IBAction func saveClick(_ sender: Any) {
+        let dict = ["processName": processNameTextField.text, "status": statusLabel.text]
+        //let png = self.saveImage.image?.pngData()
+        if isUpdate {
+            //DatabaseHelper.shareInstance.editData(object: dict as! [String: String], image: png!,  i: indexRow!)
+        } else {
+            DatabaseHelper.shareInstance.saveRepair(object: dict as! [String: String], car: car!)
         }
+        self.navigationController?.popViewController(animated: true)
+    }
 }
