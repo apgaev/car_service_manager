@@ -32,7 +32,7 @@ class ProcessDetailsViewController: UIViewController {
     @IBAction func saveClick(_ sender: Any) {
         let dict = ["processName": processNameTextField.text, "status": statusLabel.text]
         if isUpdate {
-            DatabaseHelper.shareInstance.editRepair(object: dict as! [String: String], car: car!, i: repair!.id!)
+            DatabaseHelper.shareInstance.editRepair(object: dict as! [String: String], i: repair!.id!)
         } else {
             DatabaseHelper.shareInstance.saveRepair(object: dict as! [String: String], car: car!)
         }

@@ -111,12 +111,12 @@ class DatabaseHelper {
         return repair
     }
     
-    func editRepair(object: [String: String], car: Car, i: UUID) {
+    func editRepair(object: [String: String], i: UUID) {
         let repair = getRepairData(car: nil)
         let theRepair = repair.filter({$0.id == i})
         theRepair[0].processName = object["processName"]
         theRepair[0].status = object["status"]
-        theRepair[0].repairedCar = car
+        //theRepair[0].repairedCar = car
         do {
             try context?.save()
         } catch {
