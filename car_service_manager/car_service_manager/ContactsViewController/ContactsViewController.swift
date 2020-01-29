@@ -52,7 +52,7 @@ extension ContactsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactsCell", for: indexPath) as! ClientTableViewCell
-            cell.car = searchContacts[indexPath.row]
+        cell.car = searchContacts[indexPath.row]
         return cell
     }
     
