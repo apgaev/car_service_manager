@@ -15,16 +15,24 @@ class ProcessDetailsViewController: UIViewController {
     
     var isUpdate = Bool()
     var car: Car?
+    var repair: Repair?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUI()
+    }
+    
+    func setUI() {
+        if isUpdate {
+            processNameTextField.text = repair?.processName
+        }
     }
     
     @IBAction func saveClick(_ sender: Any) {
         let dict = ["processName": processNameTextField.text, "status": statusLabel.text]
-        //let png = self.saveImage.image?.pngData()
         if isUpdate {
-            //DatabaseHelper.shareInstance.editData(object: dict as! [String: String], image: png!,  i: indexRow!)
+            DatabaseHelper.shareInstance.editRepair(object: dict as! [String: String], car: car!, i: repair!.id!)
         } else {
             DatabaseHelper.shareInstance.saveRepair(object: dict as! [String: String], car: car!)
         }

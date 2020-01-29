@@ -55,7 +55,7 @@ class DatabaseHelper {
         return car
     }
     
-    func editData(object: [String: String], image: Data, i: UUID) {//, repairs: Repair) {
+    func editData(object: [String: String], image: Data, i: UUID, repairs: NSSet) {
         let car = getCarData()
         let theCar = car.filter({$0.id == i})
         theCar[0].carName = object["carName"]
@@ -63,7 +63,7 @@ class DatabaseHelper {
         theCar[0].phone = object["phone"]
         theCar[0].carImage = image
         theCar[0].carNumber = object["carNumber"]
-        //theCar[0].carRepairs = repairs
+        theCar[0].carRepairs = repairs
         do {
             try context?.save()
         } catch {
@@ -84,20 +84,22 @@ class DatabaseHelper {
         }
     }
     
-    func getRepairData() -> [Repair] {
+    func getRepairData(car: Car?) -> [Repair] {
         var repair = [Repair]()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Repair")
-        
         do {
             repair = try context?.fetch(fetchRequest) as! [Repair]
+            if let theCar = car {
+                repair = repair.filter({$0.repairedCar == theCar})
+            }
         } catch {
             print("can not get the data")
         }
         return repair
     }
     
-    func deleteRepair(index: UUID) -> [Repair] {
-        var repair = getRepairData()
+    func deleteRepair(index: UUID, car: Car) -> [Repair] {
+        var repair = getRepairData(car: car)
         let theRepair = repair.filter({$0.id == index})
         context?.delete(theRepair[0])
         repair = repair.filter({$0.id != index})
@@ -110,7 +112,7 @@ class DatabaseHelper {
     }
     
     func editRepair(object: [String: String], car: Car, i: UUID) {
-        let repair = getRepairData()
+        let repair = getRepairData(car: nil)
         let theRepair = repair.filter({$0.id == i})
         theRepair[0].processName = object["processName"]
         theRepair[0].status = object["status"]

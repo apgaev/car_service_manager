@@ -7,7 +7,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="owner" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
-        <relationship name="carRepairs" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Repair" inverseName="repairedCar" inverseEntity="Repair"/>
+        <relationship name="carRepairs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Repair" inverseName="repairedCar" inverseEntity="Repair"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
