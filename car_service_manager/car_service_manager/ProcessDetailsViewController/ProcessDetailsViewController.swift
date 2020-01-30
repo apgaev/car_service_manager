@@ -12,6 +12,8 @@ class ProcessDetailsViewController: UIViewController {
 
     @IBOutlet weak var processNameTextField: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     var isUpdate = Bool()
     var car: Car?
@@ -26,11 +28,12 @@ class ProcessDetailsViewController: UIViewController {
     func setUI() {
         if isUpdate {
             processNameTextField.text = repair?.processName
+            priceTextField.text = String(describing: repair!.price)
         }
     }
     
     @IBAction func saveClick(_ sender: Any) {
-        let dict = ["processName": processNameTextField.text, "status": statusLabel.text]
+        let dict = ["processName": processNameTextField.text, "status": statusLabel.text, "price": priceTextField.text]
         if isUpdate {
             DatabaseHelper.shareInstance.editRepair(object: dict as! [String: String], i: repair!.id!)
         } else {

@@ -76,6 +76,7 @@ class DatabaseHelper {
         repair.id = UUID()
         repair.processName = object["processName"]
         repair.status = object["status"]
+        repair.price = Int32(object["price"]!)!
         repair.repairedCar = car
         do {
                 try context?.save()
@@ -116,7 +117,7 @@ class DatabaseHelper {
         let theRepair = repair.filter({$0.id == i})
         theRepair[0].processName = object["processName"]
         theRepair[0].status = object["status"]
-        //theRepair[0].repairedCar = car
+        theRepair[0].price = Int32(object["price"]!)!
         do {
             try context?.save()
         } catch {

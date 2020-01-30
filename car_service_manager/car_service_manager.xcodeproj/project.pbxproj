@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0363F40223E23C5F00E998B6 /* CashFlows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0363F40123E23C5F00E998B6 /* CashFlows.storyboard */; };
+		0363F40423E23C8A00E998B6 /* CashFlowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F40323E23C8A00E998B6 /* CashFlowsViewController.swift */; };
+		0363F40723E263A200E998B6 /* SubProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F40623E263A200E998B6 /* SubProcessViewController.swift */; };
+		0363F40A23E263DA00E998B6 /* SubProcess.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0363F40923E263DA00E998B6 /* SubProcess.storyboard */; };
+		0363F40C23E2ECD400E998B6 /* ProcessDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F40B23E2ECD400E998B6 /* ProcessDetailsTableViewCell.swift */; };
 		03681F0C23D253530018021F /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0B23D253530018021F /* UIViewExtensions.swift */; };
 		03681F0E23D4E1780018021F /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0D23D4E1770018021F /* CarTableViewCell.swift */; };
 		03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */; };
@@ -36,6 +41,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0363F40123E23C5F00E998B6 /* CashFlows.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CashFlows.storyboard; sourceTree = "<group>"; };
+		0363F40323E23C8A00E998B6 /* CashFlowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashFlowsViewController.swift; sourceTree = "<group>"; };
+		0363F40623E263A200E998B6 /* SubProcessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProcessViewController.swift; sourceTree = "<group>"; };
+		0363F40923E263DA00E998B6 /* SubProcess.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubProcess.storyboard; sourceTree = "<group>"; };
+		0363F40B23E2ECD400E998B6 /* ProcessDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		03681F0B23D253530018021F /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		03681F0D23D4E1770018021F /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		03681F3323D4FD0F0018021F /* car_service_manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = car_service_manager.xcdatamodel; sourceTree = "<group>"; };
@@ -77,6 +87,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0363F40523E23C9200E998B6 /* CashFlowsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0363F40123E23C5F00E998B6 /* CashFlows.storyboard */,
+				0363F40323E23C8A00E998B6 /* CashFlowsViewController.swift */,
+			);
+			path = CashFlowsViewController;
+			sourceTree = "<group>";
+		};
+		0363F40823E263AF00E998B6 /* SubProcessViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0363F40623E263A200E998B6 /* SubProcessViewController.swift */,
+				0363F40923E263DA00E998B6 /* SubProcess.storyboard */,
+			);
+			path = SubProcessViewController;
+			sourceTree = "<group>";
+		};
 		03681F0A23D253010018021F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +150,8 @@
 				037C31EA23D0DAA2002B7E75 /* ContactsViewController */,
 				037C31FF23D1D452002B7E75 /* CarViewController */,
 				037C320423D20229002B7E75 /* ProcessDetailsViewController */,
+				0363F40823E263AF00E998B6 /* SubProcessViewController */,
+				0363F40523E23C9200E998B6 /* CashFlowsViewController */,
 				037C31D923D09161002B7E75 /* Assets.xcassets */,
 				03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */,
 				037C31D023D0915C002B7E75 /* AppDelegate.swift */,
@@ -170,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				037C320223D2021E002B7E75 /* ProcessDetails.storyboard */,
+				0363F40B23E2ECD400E998B6 /* ProcessDetailsTableViewCell.swift */,
 				037C320523D2029C002B7E75 /* ProcessDetailsViewController.swift */,
 			);
 			path = ProcessDetailsViewController;
@@ -237,6 +268,8 @@
 				037C320323D2021E002B7E75 /* ProcessDetails.storyboard in Resources */,
 				03684AED23E21B3500C19B7C /* CurrentProcesses.storyboard in Resources */,
 				037C31FE23D1D43B002B7E75 /* Car.storyboard in Resources */,
+				0363F40223E23C5F00E998B6 /* CashFlows.storyboard in Resources */,
+				0363F40A23E263DA00E998B6 /* SubProcess.storyboard in Resources */,
 				037C31DA23D09161002B7E75 /* Assets.xcassets in Resources */,
 				037C31ED23D0DDAE002B7E75 /* Clients.storyboard in Resources */,
 			);
@@ -266,9 +299,12 @@
 				03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */,
 				03684AEA23E1BCBA00C19B7C /* Repair+CoreDataClass.swift in Sources */,
 				037C31F923D138DA002B7E75 /* ClientTableViewCell.swift in Sources */,
+				0363F40423E23C8A00E998B6 /* CashFlowsViewController.swift in Sources */,
 				036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */,
 				037C31D323D0915C002B7E75 /* SceneDelegate.swift in Sources */,
 				03684AE123DFA33800C19B7C /* DatabaseHelper.swift in Sources */,
+				0363F40723E263A200E998B6 /* SubProcessViewController.swift in Sources */,
+				0363F40C23E2ECD400E998B6 /* ProcessDetailsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
