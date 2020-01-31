@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		0363F40223E23C5F00E998B6 /* CashFlows.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0363F40123E23C5F00E998B6 /* CashFlows.storyboard */; };
 		0363F40423E23C8A00E998B6 /* CashFlowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F40323E23C8A00E998B6 /* CashFlowsViewController.swift */; };
-		0363F40723E263A200E998B6 /* SubProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F40623E263A200E998B6 /* SubProcessViewController.swift */; };
 		0363F40A23E263DA00E998B6 /* SubProcess.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0363F40923E263DA00E998B6 /* SubProcess.storyboard */; };
 		0363F40C23E2ECD400E998B6 /* ProcessDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F40B23E2ECD400E998B6 /* ProcessDetailsTableViewCell.swift */; };
+		0363F40E23E36A6800E998B6 /* SubProcessTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F40D23E36A6800E998B6 /* SubProcessTableViewController.swift */; };
+		0363F41123E36B4E00E998B6 /* Payment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F40F23E36B4E00E998B6 /* Payment+CoreDataClass.swift */; };
+		0363F41223E36B4E00E998B6 /* Payment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F41023E36B4E00E998B6 /* Payment+CoreDataProperties.swift */; };
+		0363F41423E4E2ED00E998B6 /* PastTransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0363F41323E4E2ED00E998B6 /* PastTransactionsTableViewCell.swift */; };
 		03681F0C23D253530018021F /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0B23D253530018021F /* UIViewExtensions.swift */; };
 		03681F0E23D4E1780018021F /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03681F0D23D4E1770018021F /* CarTableViewCell.swift */; };
 		03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03681F3223D4FD0F0018021F /* car_service_manager.xcdatamodeld */; };
@@ -43,9 +46,12 @@
 /* Begin PBXFileReference section */
 		0363F40123E23C5F00E998B6 /* CashFlows.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CashFlows.storyboard; sourceTree = "<group>"; };
 		0363F40323E23C8A00E998B6 /* CashFlowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashFlowsViewController.swift; sourceTree = "<group>"; };
-		0363F40623E263A200E998B6 /* SubProcessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProcessViewController.swift; sourceTree = "<group>"; };
 		0363F40923E263DA00E998B6 /* SubProcess.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubProcess.storyboard; sourceTree = "<group>"; };
 		0363F40B23E2ECD400E998B6 /* ProcessDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		0363F40D23E36A6800E998B6 /* SubProcessTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProcessTableViewController.swift; sourceTree = "<group>"; };
+		0363F40F23E36B4E00E998B6 /* Payment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payment+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0363F41023E36B4E00E998B6 /* Payment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payment+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0363F41323E4E2ED00E998B6 /* PastTransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastTransactionsTableViewCell.swift; sourceTree = "<group>"; };
 		03681F0B23D253530018021F /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		03681F0D23D4E1770018021F /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		03681F3323D4FD0F0018021F /* car_service_manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = car_service_manager.xcdatamodel; sourceTree = "<group>"; };
@@ -91,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				0363F40123E23C5F00E998B6 /* CashFlows.storyboard */,
+				0363F41323E4E2ED00E998B6 /* PastTransactionsTableViewCell.swift */,
 				0363F40323E23C8A00E998B6 /* CashFlowsViewController.swift */,
 			);
 			path = CashFlowsViewController;
@@ -99,8 +106,8 @@
 		0363F40823E263AF00E998B6 /* SubProcessViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0363F40623E263A200E998B6 /* SubProcessViewController.swift */,
 				0363F40923E263DA00E998B6 /* SubProcess.storyboard */,
+				0363F40D23E36A6800E998B6 /* SubProcessTableViewController.swift */,
 			);
 			path = SubProcessViewController;
 			sourceTree = "<group>";
@@ -176,6 +183,8 @@
 		037C31F023D11187002B7E75 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0363F40F23E36B4E00E998B6 /* Payment+CoreDataClass.swift */,
+				0363F41023E36B4E00E998B6 /* Payment+CoreDataProperties.swift */,
 				036A604F23D8CEBE0052A2D6 /* Car+CoreDataClass.swift */,
 				036A605023D8CEBE0052A2D6 /* Car+CoreDataProperties.swift */,
 				03684AE423E1BCBA00C19B7C /* Subprocess+CoreDataClass.swift */,
@@ -285,10 +294,13 @@
 				03684AEF23E21B8A00C19B7C /* CurrentProcessesViewController.swift in Sources */,
 				036A605423D8CEBE0052A2D6 /* Car+CoreDataProperties.swift in Sources */,
 				037C31D123D0915C002B7E75 /* AppDelegate.swift in Sources */,
+				0363F40E23E36A6800E998B6 /* SubProcessTableViewController.swift in Sources */,
 				037C320623D2029C002B7E75 /* ProcessDetailsViewController.swift in Sources */,
+				0363F41223E36B4E00E998B6 /* Payment+CoreDataProperties.swift in Sources */,
 				03681F0C23D253530018021F /* UIViewExtensions.swift in Sources */,
 				037C31EF23D0E198002B7E75 /* ContactsViewController.swift in Sources */,
 				036A605623D8DF590052A2D6 /* AlertControllerExtension.swift in Sources */,
+				0363F41123E36B4E00E998B6 /* Payment+CoreDataClass.swift in Sources */,
 				03684AEB23E1BCBA00C19B7C /* Repair+CoreDataProperties.swift in Sources */,
 				03684AE923E1BCBA00C19B7C /* Subprocess+CoreDataProperties.swift in Sources */,
 				03684AE823E1BCBA00C19B7C /* Subprocess+CoreDataClass.swift in Sources */,
@@ -297,13 +309,13 @@
 				037C320123D1D496002B7E75 /* CarViewController.swift in Sources */,
 				03681F0E23D4E1780018021F /* CarTableViewCell.swift in Sources */,
 				03681F3423D4FD100018021F /* car_service_manager.xcdatamodeld in Sources */,
+				0363F41423E4E2ED00E998B6 /* PastTransactionsTableViewCell.swift in Sources */,
 				03684AEA23E1BCBA00C19B7C /* Repair+CoreDataClass.swift in Sources */,
 				037C31F923D138DA002B7E75 /* ClientTableViewCell.swift in Sources */,
 				0363F40423E23C8A00E998B6 /* CashFlowsViewController.swift in Sources */,
 				036A605323D8CEBE0052A2D6 /* Car+CoreDataClass.swift in Sources */,
 				037C31D323D0915C002B7E75 /* SceneDelegate.swift in Sources */,
 				03684AE123DFA33800C19B7C /* DatabaseHelper.swift in Sources */,
-				0363F40723E263A200E998B6 /* SubProcessViewController.swift in Sources */,
 				0363F40C23E2ECD400E998B6 /* ProcessDetailsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

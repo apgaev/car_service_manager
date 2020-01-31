@@ -76,7 +76,7 @@ class DatabaseHelper {
         repair.id = UUID()
         repair.processName = object["processName"]
         repair.status = object["status"]
-        repair.price = Int32(object["price"]!)!
+        //repair.price = Int32(object["price"]!)!
         repair.repairedCar = car
         do {
                 try context?.save()
@@ -117,11 +117,132 @@ class DatabaseHelper {
         let theRepair = repair.filter({$0.id == i})
         theRepair[0].processName = object["processName"]
         theRepair[0].status = object["status"]
-        theRepair[0].price = Int32(object["price"]!)!
+        //theRepair[0].price = Int32(object["price"]!)!
         do {
             try context?.save()
         } catch {
             print("can not delete data")
         }
     }
+    
+    func saveSubprocess(object: [String:String], car: Car, startDate: Date, endDate: Date, repair: Repair, payment: Payment?) {
+        let subprocess = NSEntityDescription.insertNewObject(forEntityName: "Subprocess", into: context!) as! Subprocess
+        subprocess.id = UUID()
+        subprocess.name = object["name"]
+        subprocess.status = object["status"]
+        subprocess.endDate = endDate
+        subprocess.notes = object["notes"]
+        subprocess.startDate = startDate
+        subprocess.mainProcess = repair
+        subprocess.payment = payment
+        do {
+                try context?.save()
+        } catch {
+                print("data hasn't been saved")
+        }
+    }
+    
+    func getSubprocessData(repair: Repair?) -> [Subprocess] {
+        var subprocess = [Subprocess]()
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Subprocess")
+        do {
+            subprocess = try context?.fetch(fetchRequest) as! [Subprocess]
+            if let theRepair = repair {
+                subprocess = subprocess.filter({$0.mainProcess == theRepair})
+            }
+        } catch {
+            print("can not get the data")
+        }
+        return subprocess
+    }
+    
+    func deleteSubprocess(index: UUID, repair: Repair) -> [Subprocess] {
+        var subprocess = getSubprocessData(repair: repair)
+        let theSubprocess = subprocess.filter({$0.id == index})
+        context?.delete(theSubprocess[0])
+        //repair = repair.filter({$0.id != index})
+        do {
+            try context?.save()
+        } catch {
+            print("can not delete data")
+        }
+        return subprocess
+    }
+    
+    func editSubprocess(object: [String: String], i: UUID) {
+        let repair = getSubprocessData(repair: nil)
+//        let theRepair = repair.filter({$0.id == i})
+//        theRepair[0].processName = object["processName"]
+//        theRepair[0].status = object["status"]
+        //theRepair[0].price = Int32(object["price"]!)!
+        do {
+            try context?.save()
+        } catch {
+            print("can not delete data")
+        }
+    }
+    
+    func savePayment(object: [String:String], price: Int32, car: Car, date: Date, repair: Repair, subprocess: Subprocess) {
+            let payment = NSEntityDescription.insertNewObject(forEntityName: "Payment", into: context!) as! Payment
+            payment.id = UUID()
+            payment.name = object["name"]
+            payment.status = object["status"]
+            payment.date = date
+            payment.price = price
+            payment.car = car
+            payment.repair = repair
+            payment.subprocess = subprocess
+            do {
+                    try context?.save()
+            } catch {
+                    print("data hasn't been saved")
+            }
+        }
+        
+    func getPaymentData(car: Car?, repair: Repair?, subprocess: Subprocess?) -> [Payment] {
+            var payment = [Payment]()
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Payment")
+            do {
+                payment = try context?.fetch(fetchRequest) as! [Payment]
+                if let theCar = car {
+                    payment = payment.filter({$0.car == theCar})
+                }
+                if let theRepair = repair {
+                    payment = payment.filter({$0.repair == theRepair})
+                }
+                if let theSubprocess = subprocess {
+                    payment = payment.filter({$0.subprocess == theSubprocess})
+                }
+            } catch {
+                print("can not get the data")
+            }
+            return payment
+        }
+        
+        func deletePayment(index: UUID) -> [Payment] {
+            var payment = getPaymentData(car: nil, repair: nil, subprocess: nil)
+            let thePayment = payment.filter({$0.id == index})
+            context?.delete(thePayment[0])
+            payment = payment.filter({$0.id != index})
+            do {
+                try context?.save()
+            } catch {
+                print("can not delete data")
+            }
+            return payment
+        }
+        
+        func editPayment(object: [String: String], i: UUID) {
+            let payment = getPaymentData(car: nil, repair: nil, subprocess: nil)
+    //        let theRepair = repair.filter({$0.id == i})
+    //        theRepair[0].processName = object["processName"]
+    //        theRepair[0].status = object["status"]
+            //theRepair[0].price = Int32(object["price"]!)!
+            do {
+                try context?.save()
+            } catch {
+                print("can not delete data")
+            }
+        }
+
 }

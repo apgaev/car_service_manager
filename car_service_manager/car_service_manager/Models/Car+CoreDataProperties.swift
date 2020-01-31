@@ -2,7 +2,7 @@
 //  Car+CoreDataProperties.swift
 //  car_service_manager
 //
-//  Created by Anton Gaev on 29.01.2020.
+//  Created by Anton Gaev on 30.01.2020.
 //  Copyright © 2020 Anton Gaev. All rights reserved.
 //
 //
@@ -24,6 +24,7 @@ extension Car {
     @NSManaged public var owner: String?
     @NSManaged public var phone: String?
     @NSManaged public var carRepairs: NSSet?
+    @NSManaged public var payment: NSSet?
 
 }
 
@@ -41,5 +42,22 @@ extension Car {
 
     @objc(removeCarRepairs:)
     @NSManaged public func removeFromCarRepairs(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for payment
+extension Car {
+
+    @objc(addPaymentObject:)
+    @NSManaged public func addToPayment(_ value: Payment)
+
+    @objc(removePaymentObject:)
+    @NSManaged public func removeFromPayment(_ value: Payment)
+
+    @objc(addPayment:)
+    @NSManaged public func addToPayment(_ values: NSSet)
+
+    @objc(removePayment:)
+    @NSManaged public func removeFromPayment(_ values: NSSet)
 
 }
